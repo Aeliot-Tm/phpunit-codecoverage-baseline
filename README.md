@@ -1,12 +1,15 @@
 PHPUnit code coverage baseline
 ==============================
 
-It is a base implementation of baseline support for Clover reposts of PHPUnit.
+Package implements support of baseline for Clover repost of PHPUnit.
 
 Installation
 ------------
 
-`composer require --dev aeliot-tm/phpunit-codecoverage-baseline`
+Call command line script to install: 
+```shell
+composer require --dev aeliot-tm/phpunit-codecoverage-baseline
+```
 
 Usage
 -----
