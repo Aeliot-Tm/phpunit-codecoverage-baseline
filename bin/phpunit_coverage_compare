@@ -75,6 +75,10 @@ try {
 
 $regressedTypes = [];
 foreach ($supportedTypes as $type) {
+    if (!isset($baseLine[$type])) {
+        continue;
+    }
+
     $typeCover = 'covered' . $type;
     $regressed = false;
     $currentProgress = 100.0;
@@ -87,7 +91,7 @@ foreach ($supportedTypes as $type) {
     }
 
     if ($baseLine[$type]) {
-        $oldProgress = $baseLine[$typeCover] / $baseLine[$type];
+        $oldProgress = ($baseLine[$typeCover] ?? 0) / $baseLine[$type];
     }
 
     if ($currentProgress < $oldProgress) {
