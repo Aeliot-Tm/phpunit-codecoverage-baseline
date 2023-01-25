@@ -3,6 +3,7 @@
   "type": "library",
   "description": "Script for the comparing of current code coverage with baseline.",
   "license": "MIT",
+  "keywords": ["phpunit", "clover", "baseline"],
   "require": {
     "php": "^7.4",
     "ext-simplexml": "*",
