@@ -44,24 +44,37 @@ if (!$metricsSet) {
 
 /** @var SimpleXMLElement $attributes */
 $attributes = $metricsSet[0]->attributes();
+$supportedTypes = ['methods', 'conditionals', 'statements', 'elements'];
+$supportedKeys = array_merge($supportedTypes, array_map(static fn (string $x): string => 'covered' . $x, $supportedTypes));
 
-/**
- * @var array{
- *     methods: int,
- *     coveredmethods: int,
- *     conditionals: int,
- *     coveredconditionals: int,
- *     statements: int,
- *     coveredstatements: int,
- *     elements: int,
- *     coveredelements: int
- * } $baseLine
- */
-$baseLine = json_decode(file_get_contents($baseLinePath), true, 512, JSON_THROW_ON_ERROR);
+try {
+    /**
+     * @var array{
+     *     methods: int,
+     *     coveredmethods: int,
+     *     conditionals: int,
+     *     coveredconditionals: int,
+     *     statements: int,
+     *     coveredstatements: int,
+     *     elements: int,
+     *     coveredelements: int
+     * } $baseLine
+     */
+    $baseLine = json_decode(file_get_contents($baseLinePath), true, 512, JSON_THROW_ON_ERROR);
+    if (!array_intersect_key($baseLine, array_flip($supportedTypes))
+        || array_diff_key($baseLine, array_flip($supportedKeys))
+        || array_filter($baseLine, static fn ($x) => !\is_int($x))
+    ) {
+        echo sprintf('[ERROR] Invalid base line.%s', PHP_EOL);
+        exit(2);
+    }
+} catch (\Exception $e) {
+    echo sprintf('[ERROR] Cannot parse baseline. %s.%s', $e->getMessage(), PHP_EOL);
+    exit(2);
+}
 
-$types = ['methods', 'conditionals', 'statements', 'elements'];
 $regressedTypes = [];
-foreach ($types as $type) {
+foreach ($supportedTypes as $type) {
     $typeCover = 'covered' . $type;
     $regressed = false;
     $currentProgress = 100.0;
