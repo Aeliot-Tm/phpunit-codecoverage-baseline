@@ -9,6 +9,6 @@
     "ext-json": "*"
   },
   "bin": [
-    "bin/phpunit_coverage_compare"
+    "bin/phpunit_clover_compare"
   ]
 }
