@@ -1,0 +1,71 @@
+#!/usr/bin/env php
+<?php
+
+$baseLinePath = __DIR__ . '/../phpunit.coverage.baseline.json';
+if (!file_exists($baseLinePath)) {
+    echo sprintf('[ERROR] Code coverage baseline does not exists.%s', PHP_EOL);
+    exit(2);
+}
+
+$cloverPath = __DIR__.'/../build/coverage/clover.xml';
+if (!file_exists($cloverPath)) {
+    echo sprintf('[ERROR] Coverage is not calculated.%s', PHP_EOL);
+    exit(2);
+}
+
+$clover = simplexml_load_string(file_get_contents($cloverPath));
+if (!$clover instanceof SimpleXMLElement) {
+    echo sprintf('[ERROR] Cannot load file "clover.xml".%s', PHP_EOL);
+    exit(2);
+}
+
+$metricsSet = $clover->xpath('/coverage/project/metrics');
+if (!$metricsSet) {
+    echo sprintf('[ERROR] Cannot find tag "metrics".%s', PHP_EOL);
+    exit(2);
+}
+
+/** @var SimpleXMLElement $attributes */
+$attributes = $metricsSet[0]->attributes();
+
+/**
+ * @var array{
+ *     methods: int,
+ *     coveredmethods: int,
+ *     conditionals: int,
+ *     coveredconditionals: int,
+ *     statements: int,
+ *     coveredstatements: int,
+ *     elements: int,
+ *     coveredelements: int
+ * } $baseLine
+ */
+$baseLine = json_decode(file_get_contents($baseLinePath), true, 512, JSON_THROW_ON_ERROR);
+
+$types = ['methods', 'conditionals', 'statements', 'elements'];
+$regressedTypes = [];
+foreach ($types as $type) {
+    $typeCover = 'covered'.$type;
+    $regressed = false;
+    $currentProgress = 100.0;
+    $oldProgress = 100.0;
+    $subtypeValue = (int) (string) $attributes->$typeCover;
+    $typeValue = (int) (string) $attributes->$type;
+
+    if ($typeValue) {
+        $currentProgress = $subtypeValue / $typeValue;
+    }
+
+    if ($baseLine[$type]) {
+        $oldProgress = $baseLine[$typeCover] / $baseLine[$type];
+    }
+
+    if ($currentProgress < $oldProgress) {
+        $regressedTypes[] = $type;
+    }
+}
+
+if ($regressedTypes) {
+    echo sprintf('[ERROR] There is detected regress of code coverage on types: %s.%s', implode(', ', $regressedTypes), PHP_EOL);
+    exit(1);
+}

@@ -2,5 +2,13 @@
   "name": "aeliot-tm/phpunit-codecoverage-compare",
   "type": "library",
   "description": "Script for the comparing of current code coverage with baseline.",
-  "license": "MIT"
+  "license": "MIT",
+  "require": {
+    "php": "^7.4",
+    "ext-simplexml": "*",
+    "ext-json": "*"
+  },
+  "bin": [
+    "bin/phpunit_coverage_compare"
+  ]
 }
