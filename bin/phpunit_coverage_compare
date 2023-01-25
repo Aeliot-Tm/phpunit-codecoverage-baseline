@@ -1,15 +1,32 @@
 #!/usr/bin/env php
 <?php
 
-$baseLinePath = __DIR__ . '/../phpunit.coverage.baseline.json';
-if (!file_exists($baseLinePath)) {
-    echo sprintf('[ERROR] Code coverage baseline does not exists.%s', PHP_EOL);
+$options = getopt('b:c:', ['baseline:', 'clover:']);
+if (array_filter($options, static fn ($x): bool => \is_array($x))
+    || isset($options['b'], $options['baseline'])
+    || isset($options['c'], $options['clover'])
+) {
+    echo sprintf('[ERROR] Multiple options forbidden.%s', PHP_EOL);
     exit(2);
 }
 
-$cloverPath = __DIR__.'/../build/coverage/clover.xml';
+$baseLinePath = $options['b'] ?? $options['baseline'] ?? null;
+if (null === $baseLinePath) {
+    $baseLinePath = 'phpunit.coverage.baseline.json';
+    echo sprintf('[INFO] Used default path to code coverage baseline: "%s".%s', $baseLinePath, PHP_EOL);
+}
+if (!file_exists($baseLinePath)) {
+    echo sprintf('[ERROR] Code coverage baseline "%s" does not exist.%s', $baseLinePath, PHP_EOL);
+    exit(2);
+}
+
+$cloverPath = $options['c'] ?? $options['clover'] ?? null;
+if (null === $cloverPath) {
+    $cloverPath = 'build/coverage/clover.xml';
+    echo sprintf('[INFO] Used default path to coverage clover file: "%s".%s', $baseLinePath, PHP_EOL);
+}
 if (!file_exists($cloverPath)) {
-    echo sprintf('[ERROR] Coverage is not calculated.%s', PHP_EOL);
+    echo sprintf('[ERROR] Coverage clover file "%s" does not exist. Maybe it is not calculated yet.%s', $cloverPath, PHP_EOL);
     exit(2);
 }
 
@@ -45,7 +62,7 @@ $baseLine = json_decode(file_get_contents($baseLinePath), true, 512, JSON_THROW_
 $types = ['methods', 'conditionals', 'statements', 'elements'];
 $regressedTypes = [];
 foreach ($types as $type) {
-    $typeCover = 'covered'.$type;
+    $typeCover = 'covered' . $type;
     $regressed = false;
     $currentProgress = 100.0;
     $oldProgress = 100.0;
