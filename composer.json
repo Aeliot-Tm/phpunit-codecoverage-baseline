@@ -1,0 +1,6 @@
+{
+  "name": "aeliot-tm/phpunit-codecoverage-compare",
+  "type": "library",
+  "description": "Script for the comparing of current code coverage with baseline.",
+  "license": "MIT"
+}
