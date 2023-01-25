@@ -20,7 +20,7 @@ if (array_filter($options, static fn ($x): bool => \is_array($x))
 
 $baselinePath = $options['b'] ?? $options['baseline'] ?? null;
 if (null === $baselinePath) {
-    $baselinePath = 'phpunit.coverage.baseline.json';
+    $baselinePath = 'phpunit.clover.baseline.json';
     echo sprintf('[INFO] Used default path to code coverage baseline: "%s".%s', $baselinePath, PHP_EOL);
 }
 if (!file_exists($baselinePath)) {
