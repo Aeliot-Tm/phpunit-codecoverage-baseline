@@ -4,106 +4,29 @@
 /**
  * DISCLAIMER: this is the base implementation of the comparing of Clover report with its baseline.
  *
- * TODO: 1) refactor in the OOP code style.
- *       2) add generating/updating of baseline from Clover report
- *       3) add tests :)
+ * TODO: add generating/updating of baseline from Clover report
  */
 
-$options = getopt('b:c:', ['baseline:', 'clover:']);
-if (array_filter($options, static fn ($x): bool => \is_array($x))
-    || isset($options['b'], $options['baseline'])
-    || isset($options['c'], $options['clover'])
-) {
-    echo sprintf('[ERROR] Multiple options forbidden.%s', PHP_EOL);
-    exit(2);
-}
+use Aeliot\PHPUnitCodeCoverageBaseline\Comparator;
+use Aeliot\PHPUnitCodeCoverageBaseline\Console\GetOpt;
+use Aeliot\PHPUnitCodeCoverageBaseline\Console\OptionsConfig;
+use Aeliot\PHPUnitCodeCoverageBaseline\Console\OptionsReader;
+use Aeliot\PHPUnitCodeCoverageBaseline\Reader\BaselineReader;
+use Aeliot\PHPUnitCodeCoverageBaseline\Reader\CloverReader;
 
-$baselinePath = $options['b'] ?? $options['baseline'] ?? null;
-if (null === $baselinePath) {
-    $baselinePath = 'phpunit.clover.baseline.json';
-    echo sprintf('[INFO] Used default path to code coverage baseline: "%s".%s', $baselinePath, PHP_EOL);
-}
-if (!file_exists($baselinePath)) {
-    echo sprintf('[ERROR] Code coverage baseline "%s" does not exist.%s', $baselinePath, PHP_EOL);
-    exit(2);
-}
+$optionsConfig = new OptionsConfig();
+$optionsConfig->add('baseline', 'b', 'phpunit.clover.baseline.json');
+$optionsConfig->add('clover', 'c', 'build/coverage/clover.xml');
 
-$cloverPath = $options['c'] ?? $options['clover'] ?? null;
-if (null === $cloverPath) {
-    $cloverPath = 'build/coverage/clover.xml';
-    echo sprintf('[INFO] Used default path to coverage clover file: "%s".%s', $baselinePath, PHP_EOL);
-}
-if (!file_exists($cloverPath)) {
-    echo sprintf('[ERROR] Coverage clover file "%s" does not exist. Maybe it is not calculated yet.%s', $cloverPath, PHP_EOL);
-    exit(2);
-}
-
-$clover = simplexml_load_string(file_get_contents($cloverPath));
-if (!$clover instanceof SimpleXMLElement) {
-    echo sprintf('[ERROR] Cannot load file "clover.xml".%s', PHP_EOL);
-    exit(2);
-}
-
-$metricsSet = $clover->xpath('/coverage/project/metrics');
-if (!$metricsSet) {
-    echo sprintf('[ERROR] Cannot find tag "metrics" of the project.%s', PHP_EOL);
-    exit(2);
-}
-
-/** @var SimpleXMLElement $attributes */
-$attributes = $metricsSet[0]->attributes();
-$supportedTypes = ['methods', 'conditionals', 'statements', 'elements'];
-$supportedKeys = array_merge($supportedTypes, array_map(static fn (string $x): string => 'covered' . $x, $supportedTypes));
+/** @var array{ baseline: string, clover: string } $options */
+$options = (new OptionsReader($optionsConfig, new GetOpt()))->read();
 
 try {
-    /**
-     * @var array{
-     *     methods: int,
-     *     coveredmethods: int,
-     *     conditionals: int,
-     *     coveredconditionals: int,
-     *     statements: int,
-     *     coveredstatements: int,
-     *     elements: int,
-     *     coveredelements: int
-     * } $baseline
-     */
-    $baseline = json_decode(file_get_contents($baselinePath), true, 512, JSON_THROW_ON_ERROR);
-    if (!array_intersect_key($baseline, array_flip($supportedTypes))
-        || array_diff_key($baseline, array_flip($supportedKeys))
-        || array_filter($baseline, static fn ($x) => !\is_int($x))
-    ) {
-        echo sprintf('[ERROR] Invalid base line.%s', PHP_EOL);
-        exit(2);
-    }
-} catch (\Exception $e) {
-    echo sprintf('[ERROR] Cannot parse baseline. %s.%s', $e->getMessage(), PHP_EOL);
+    $comparator = new Comparator(new BaselineReader($options['baseline']), new CloverReader($options['clover']));
+    $regressedTypes = $comparator->compare();
+} catch (\Exception $exception) {
+    echo sprintf('[ERROR] %s%s', $exception->getMessage(), PHP_EOL);
     exit(2);
-}
-
-$regressedTypes = [];
-foreach ($supportedTypes as $type) {
-    if (!isset($baseline[$type])) {
-        continue;
-    }
-
-    $typeCover = 'covered' . $type;
-    $baselineProgress = 0.0;
-    $currentProgress = 0.0;
-
-    $typeValue = (int) (string) $attributes->$type;
-    $typeCoverValue = (int) (string) $attributes->$typeCover;
-    if ($typeValue) {
-        $currentProgress = $typeCoverValue / $typeValue;
-    }
-
-    if ($baseline[$type]) {
-        $baselineProgress = ($baseline[$typeCover] ?? 0) / $baseline[$type];
-    }
-
-    if ($currentProgress < $baselineProgress) {
-        $regressedTypes[] = $type;
-    }
 }
 
 if ($regressedTypes) {
