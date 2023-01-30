@@ -3,12 +3,12 @@
 
 declare(strict_types=1);
 
-use Aeliot\PHPUnitCodeCoverageBaseline\Comparator;
+use Aeliot\PHPUnitCodeCoverageBaseline\BaselineBuilder;
 use Aeliot\PHPUnitCodeCoverageBaseline\Console\GetOpt;
 use Aeliot\PHPUnitCodeCoverageBaseline\Console\OptionsConfig;
 use Aeliot\PHPUnitCodeCoverageBaseline\Console\OptionsReader;
-use Aeliot\PHPUnitCodeCoverageBaseline\Reader\BaselineReader;
 use Aeliot\PHPUnitCodeCoverageBaseline\Reader\CloverReader;
+use Aeliot\PHPUnitCodeCoverageBaseline\Writer\BaselineWriter;
 
 require __DIR__ . '/include_autoloader.php';
 
@@ -20,14 +20,9 @@ $optionsConfig->add('clover', 'c', 'build/coverage/clover.xml');
 $options = (new OptionsReader($optionsConfig, new GetOpt()))->read();
 
 try {
-    $comparator = new Comparator(new BaselineReader($options['baseline']), new CloverReader($options['clover']));
-    $regressedTypes = $comparator->compare();
+    $builder = new BaselineBuilder(new BaselineWriter($options['baseline']), new CloverReader($options['clover']));
+    $builder->build();
 } catch (\Exception $exception) {
     echo sprintf('[ERROR] %s%s', $exception->getMessage(), PHP_EOL);
     exit(2);
-}
-
-if ($regressedTypes) {
-    echo sprintf('[ERROR] There is detected regress of code coverage on types: %s.%s', implode(', ', $regressedTypes), PHP_EOL);
-    exit(1);
 }
