@@ -25,5 +25,8 @@
   },
   "bin": [
     "bin/pccb_clover_compare"
-  ]
+  ],
+  "scripts": {
+    "test": "vendor/bin/phpunit"
+  }
 }
