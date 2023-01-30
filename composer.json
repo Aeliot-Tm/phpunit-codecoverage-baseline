@@ -24,6 +24,7 @@
     }
   },
   "bin": [
+    "bin/pccb_clover_build_baseline",
     "bin/pccb_clover_compare"
   ],
   "scripts": {
