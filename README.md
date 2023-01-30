@@ -14,15 +14,17 @@ composer require --dev aeliot-tm/phpunit-codecoverage-baseline
 Usage
 -----
 
+### Compare Clover report with baseline
+
 1. Add baseline file to the project. See [example](docs/phpunit.clover.baseline.json).
 2. Run your tests with [configured](https://phpunit.readthedocs.io/en/9.5/configuration.html#the-report-element) 
    code coverage Clover report or with [command line option](https://phpunit.readthedocs.io/en/9.5/textui.html?highlight=clover#command-line-options).
    ```shell
    phpunit --coverage-clover 'build/coverage/clover.xml' tests/
    ```
-3. Call [script](bin/phpunit_clover_compare).
+3. Call [script](bin/pccb_clover_compare).
    ```shell
-   vendor/bin/phpunit_clover_compare
+   vendor/bin/pccb_clover_compare
    ```
    It accepts options:
 
@@ -30,3 +32,13 @@ Usage
 |--------------|------------|---------------------------|--------------------------------|
 | `--baseline` | `-b`       | Path to the baseline      | `phpunit.clover.baseline.json` |
 | `--clover`   | `-c`       | Path to the Clover report | `build/coverage/clover.xml`    |
+
+
+### Build baseline for Clover report
+
+1. Run your tests.
+2. Call [script](bin/pccb_clover_build_baseline).
+   ```shell
+   vendor/bin/pccb_clover_build_baseline
+   ```
+   It accepts same options like previous command.
