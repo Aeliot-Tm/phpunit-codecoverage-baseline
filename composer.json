@@ -24,6 +24,6 @@
     }
   },
   "bin": [
-    "bin/phpunit_clover_compare"
+    "bin/pccb_clover_compare"
   ]
 }

@@ -1,0 +1,28 @@
+#!/usr/bin/env php
+<?php
+
+declare(strict_types=1);
+
+use Aeliot\PHPUnitCodeCoverageBaseline\BaselineBuilder;
+use Aeliot\PHPUnitCodeCoverageBaseline\Console\GetOpt;
+use Aeliot\PHPUnitCodeCoverageBaseline\Console\OptionsConfig;
+use Aeliot\PHPUnitCodeCoverageBaseline\Console\OptionsReader;
+use Aeliot\PHPUnitCodeCoverageBaseline\Reader\CloverReader;
+use Aeliot\PHPUnitCodeCoverageBaseline\Writer\BaselineWriter;
+
+require __DIR__ . '/include_autoloader.php';
+
+$optionsConfig = new OptionsConfig();
+$optionsConfig->add('baseline', 'b', 'phpunit.clover.baseline.json');
+$optionsConfig->add('clover', 'c', 'build/coverage/clover.xml');
+
+/** @var array{ baseline: string, clover: string } $options */
+$options = (new OptionsReader($optionsConfig, new GetOpt()))->read();
+
+try {
+    $builder = new BaselineBuilder(new BaselineWriter($options['baseline']), new CloverReader($options['clover']));
+    $builder->build();
+} catch (\Exception $exception) {
+    echo sprintf('[ERROR] %s%s', $exception->getMessage(), PHP_EOL);
+    exit(2);
+}
