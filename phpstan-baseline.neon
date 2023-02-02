@@ -1,6 +1,11 @@
 parameters:
 	ignoreErrors:
 		-
+			message: "#^Method Aeliot\\\\PHPUnitCodeCoverageBaseline\\\\Enum\\\\SupportedType\\:\\:getCoveredTypes\\(\\) should return array\\<string, string\\> but returns array\\<string, string\\>\\|false\\.$#"
+			count: 1
+			path: src/Enum/SupportedType.php
+
+		-
 			message: "#^Return type of call to method PHPUnit\\\\Framework\\\\TestCase\\:\\:createMock\\(\\) contains unresolvable type\\.$#"
 			count: 2
 			path: tests/Unit/BaselineBuilderTest.php
@@ -19,3 +24,19 @@ parameters:
 			message: "#^Return type of call to method PHPUnit\\\\Framework\\\\TestCase\\:\\:createMock\\(\\) contains unresolvable type\\.$#"
 			count: 1
 			path: tests/Unit/Model/ConsoleTableTest.php
+
+		-
+			message: "#^Call to an undefined static method PHPUnit\\\\Framework\\\\TestCase\\:\\:expectExceptionMessageMatches\\(\\)\\.$#"
+			count: 1
+			path: tests/Unit/UnitTestCase.php
+
+		-
+			message: "#^Call to an undefined static method PHPUnit\\\\Framework\\\\TestCase\\:\\:expectWarning\\(\\)\\.$#"
+			count: 1
+			path: tests/Unit/UnitTestCase.php
+
+		-
+			message: "#^Call to an undefined static method PHPUnit\\\\Framework\\\\TestCase\\:\\:expectWarningMessageMatches\\(\\)\\.$#"
+			count: 1
+			path: tests/Unit/UnitTestCase.php
+

@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace Aeliot\PHPUnitCodeCoverageBaseline\Test\Unit\Reader;
 
 use Aeliot\PHPUnitCodeCoverageBaseline\Reader\CloverReader;
-use PHPUnit\Framework\TestCase;
+use Aeliot\PHPUnitCodeCoverageBaseline\Test\Unit\UnitTestCase;
 
-final class CloverReaderTest extends TestCase
+final class CloverReaderTest extends UnitTestCase
 {
     public function testPositiveFlow(): void
     {

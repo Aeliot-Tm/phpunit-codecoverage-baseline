@@ -9,24 +9,27 @@ final class ConsoleTable
     /**
      * @var string[]
      */
-    private array $columns;
+    private $columns;
 
-    private int $columnsCount;
+    /**
+     * @var int
+     */
+    private $columnsCount;
 
     /**
      * @var array<int,int|string>
      */
-    private array $columnsKeys;
+    private $columnsKeys;
 
     /**
      * @var array<int,int>
      */
-    private array $columnsWidth;
+    private $columnsWidth;
 
     /**
      * @var array<int,array<string>>
      */
-    private array $values = [];
+    private $values = [];
 
     /**
      * @param string[] $columns

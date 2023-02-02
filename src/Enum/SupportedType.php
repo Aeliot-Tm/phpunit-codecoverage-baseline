@@ -53,6 +53,8 @@ final class SupportedType
      */
     private static function mapCoveredTypes(array $supportedTypes): array
     {
-        return array_map(static fn (string $x): string => 'covered' . $x, $supportedTypes);
+        return array_map(static function (string $x): string {
+            return 'covered' . $x;
+        }, $supportedTypes);
     }
 }

@@ -9,7 +9,10 @@ namespace Aeliot\PHPUnitCodeCoverageBaseline\Writer;
  */
 final class BaselineWriter
 {
-    private string $path;
+    /**
+     * @var string
+     */
+    private $path;
 
     public function __construct(string $path)
     {
@@ -21,6 +24,10 @@ final class BaselineWriter
      */
     public function write(array $baseline): void
     {
-        file_put_contents($this->path, json_encode($baseline, JSON_THROW_ON_ERROR | JSON_PRETTY_PRINT));
+        $content = json_encode($baseline, JSON_PRETTY_PRINT);
+        if (json_last_error()) {
+            throw new \LogicException(json_last_error_msg());
+        }
+        file_put_contents($this->path, $content);
     }
 }

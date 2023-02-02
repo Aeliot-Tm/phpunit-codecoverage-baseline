@@ -6,17 +6,20 @@ namespace Aeliot\PHPUnitCodeCoverageBaseline\Model;
 
 final class ComparingResult
 {
-    private bool $hasImprovement = false;
+    /**
+     * @var bool
+     */
+    private $hasImprovement = false;
 
     /**
      * @var ComparingRow[]
      */
-    private array $rows = [];
+    private $rows = [];
 
     /**
      * @var string[]
      */
-    private array $regressedNames = [];
+    private $regressedNames = [];
 
     public function addRow(ComparingRow $row): void
     {

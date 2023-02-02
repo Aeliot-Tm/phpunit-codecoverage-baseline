@@ -12,8 +12,15 @@ use Aeliot\PHPUnitCodeCoverageBaseline\Reader\CloverReader;
 
 final class Comparator
 {
-    private BaselineReader $baselineReader;
-    private CloverReader $cloverReader;
+    /**
+     * @var BaselineReader
+     */
+    private $baselineReader;
+
+    /**
+     * @var CloverReader
+     */
+    private $cloverReader;
 
     public function __construct(BaselineReader $baselineReader, CloverReader $cloverReader)
     {
