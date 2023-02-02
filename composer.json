@@ -3,7 +3,11 @@
   "type": "library",
   "description": "Script for the comparing of current code coverage with baseline.",
   "license": "MIT",
-  "keywords": ["phpunit", "clover", "baseline"],
+  "keywords": [
+    "phpunit",
+    "clover",
+    "baseline"
+  ],
   "autoload": {
     "psr-4": {
       "Aeliot\\PHPUnitCodeCoverageBaseline\\": "src/"
@@ -21,19 +25,20 @@
   "config": {
     "allow-plugins": {
       "phpstan/extension-installer": true
-    }
+    },
+    "sort-packages": true
   },
   "require": {
     "php": "^7.4|^8.0",
-    "ext-simplexml": "*",
-    "ext-json": "*"
+    "ext-json": "*",
+    "ext-simplexml": "*"
   },
   "require-dev": {
-    "phpunit/phpunit": "^9.5",
     "dg/bypass-finals": "^1.4",
+    "phpstan/extension-installer": "^1.2",
     "phpstan/phpstan": "^1.9",
     "phpstan/phpstan-phpunit": "^1.3",
-    "phpstan/extension-installer": "^1.2"
+    "phpunit/phpunit": "^9.5"
   },
   "scripts": {
     "test": "vendor/bin/phpunit",
