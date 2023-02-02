@@ -5,6 +5,8 @@ declare(strict_types=1);
 namespace Aeliot\PHPUnitCodeCoverageBaseline;
 
 use Aeliot\PHPUnitCodeCoverageBaseline\Enum\SupportedType;
+use Aeliot\PHPUnitCodeCoverageBaseline\Model\ComparingResult;
+use Aeliot\PHPUnitCodeCoverageBaseline\Model\ComparingRow;
 use Aeliot\PHPUnitCodeCoverageBaseline\Reader\BaselineReader;
 use Aeliot\PHPUnitCodeCoverageBaseline\Reader\CloverReader;
 
@@ -19,11 +21,11 @@ final class Comparator
         $this->cloverReader = $cloverReader;
     }
 
-    public function compare(): array
+    public function compare(): ComparingResult
     {
         $baseline = $this->baselineReader->read();
         $cloverData = $this->cloverReader->read();
-        $regressedTypes = [];
+        $result = new ComparingResult();
 
         foreach (SupportedType::getCoveredTypes() as $type => $typeCover) {
             if (!isset($baseline[$type])) {
@@ -33,8 +35,8 @@ final class Comparator
             $currentProgress = 0.0;
 
             $typeValue = $cloverData[$type];
-            $typeCoverValue = $cloverData[$typeCover];
             if ($typeValue) {
+                $typeCoverValue = $cloverData[$typeCover];
                 $currentProgress = $typeCoverValue / $typeValue;
             }
 
@@ -42,11 +44,9 @@ final class Comparator
                 $baselineProgress = ($baseline[$typeCover] ?? 0) / $baseline[$type];
             }
 
-            if ($currentProgress < $baselineProgress) {
-                $regressedTypes[] = $type;
-            }
+            $result->addRow(new ComparingRow($type, $baselineProgress, $currentProgress));
         }
 
-        return $regressedTypes;
+        return $result;
     }
 }

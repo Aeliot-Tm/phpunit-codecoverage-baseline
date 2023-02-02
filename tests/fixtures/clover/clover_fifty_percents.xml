@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<coverage generated="0">
+    <project timestamp="0">
+        <metrics files="0"
+                 loc="0"
+                 ncloc="0"
+                 classes="0"
+                 methods="10"
+                 coveredmethods="5"
+                 conditionals="10"
+                 coveredconditionals="5"
+                 statements="10"
+                 coveredstatements="5"
+                 elements="10"
+                 coveredelements="5"
+        />
+    </project>
+</coverage>

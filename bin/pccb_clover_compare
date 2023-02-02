@@ -7,6 +7,8 @@ use Aeliot\PHPUnitCodeCoverageBaseline\Comparator;
 use Aeliot\PHPUnitCodeCoverageBaseline\Console\GetOpt;
 use Aeliot\PHPUnitCodeCoverageBaseline\Console\OptionsConfig;
 use Aeliot\PHPUnitCodeCoverageBaseline\Console\OptionsReader;
+use Aeliot\PHPUnitCodeCoverageBaseline\Model\ComparingRow;
+use Aeliot\PHPUnitCodeCoverageBaseline\Model\ConsoleTable;
 use Aeliot\PHPUnitCodeCoverageBaseline\Reader\BaselineReader;
 use Aeliot\PHPUnitCodeCoverageBaseline\Reader\CloverReader;
 
@@ -15,19 +17,47 @@ require __DIR__ . '/include_autoloader.php';
 $optionsConfig = new OptionsConfig();
 $optionsConfig->add('baseline', 'b', 'phpunit.clover.baseline.json');
 $optionsConfig->add('clover', 'c', 'build/coverage/clover.xml');
+$optionsConfig->add('verbose', 'v');
 
 /** @var array{ baseline: string, clover: string } $options */
 $options = (new OptionsReader($optionsConfig, new GetOpt()))->read();
+$isVerbose = false;
+if (isset($options['verbose'])) {
+    if ('v' !== $options['verbose']) {
+        throw new \InvalidArgumentException('Invalid verbosity option');
+    }
+    $isVerbose = ('v' === $options['verbose']);
+}
 
 try {
     $comparator = new Comparator(new BaselineReader($options['baseline']), new CloverReader($options['clover']));
-    $regressedTypes = $comparator->compare();
+    $results = $comparator->compare();
 } catch (\Exception $exception) {
     echo sprintf('[ERROR] %s%s', $exception->getMessage(), PHP_EOL);
     exit(2);
 }
 
-if ($regressedTypes) {
+if ($isVerbose) {
+    echo 'Clover baseline comparing results:' . PHP_EOL;
+
+    $table = new ConsoleTable([
+        'name' => 'Metrics',
+        'old' => 'Old coverage',
+        'new' => 'New coverage',
+        'progress' => 'Progress',
+    ]);
+
+    $rows = $results->getRows();
+    array_walk($rows, static fn (ComparingRow $x) => $table->addComparingRow($x));
+
+    echo $table->getContent();
+}
+
+if ($regressedTypes = $results->getRegressedNames()) {
     echo sprintf('[ERROR] There is detected regress of code coverage on types: %s.%s', implode(', ', $regressedTypes), PHP_EOL);
     exit(1);
+}
+
+if ($isVerbose && $results->hasImprovement()) {
+    echo 'Good job! You improved code coverage. Update baseline.' . PHP_EOL;
 }

@@ -28,10 +28,11 @@ Usage
    ```
    It accepts options:
 
-| Full name    | Short name | Description               | Default value                  |
-|--------------|------------|---------------------------|--------------------------------|
-| `--baseline` | `-b`       | Path to the baseline      | `phpunit.clover.baseline.json` |
-| `--clover`   | `-c`       | Path to the Clover report | `build/coverage/clover.xml`    |
+| Full name    | Short name | Description                                  | Default value                  |
+|--------------|------------|----------------------------------------------|--------------------------------|
+| `--baseline` | `-b`       | Path to the baseline                         | `phpunit.clover.baseline.json` |
+| `--clover`   | `-c`       | Path to the Clover report                    | `build/coverage/clover.xml`    |
+| `--verbose`  | `-v`       | Generates verbose report. Accepts value: `v` |                                |
 
 
 ### Build baseline for Clover report
@@ -41,4 +42,9 @@ Usage
    ```shell
    vendor/bin/pccb_clover_build_baseline
    ```
-   It accepts same options like previous command.
+   It accepts options:
+
+| Full name    | Short name | Description               | Default value                  |
+|--------------|------------|---------------------------|--------------------------------|
+| `--baseline` | `-b`       | Path to the baseline      | `phpunit.clover.baseline.json` |
+| `--clover`   | `-c`       | Path to the Clover report | `build/coverage/clover.xml`    |

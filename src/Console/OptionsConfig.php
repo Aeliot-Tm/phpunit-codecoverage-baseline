@@ -12,14 +12,14 @@ final class OptionsConfig
     private array $aliases = [];
 
     /**
-     * @var array<string,array{ longName: string, shortName: string, defaultValue: string }>
+     * @var array<string,array{ longName: string, shortName: string, defaultValue: string|null }>
      */
     private array $options = [];
 
     public function add(
         string $longName,
         string $shortName,
-        string $defaultValue
+        string $defaultValue = null
     ): void {
         $this->validateNames($longName, $shortName);
 
@@ -43,7 +43,7 @@ final class OptionsConfig
     }
 
     /**
-     * @return array<string,array{ longName: string, shortName: string, defaultValue: string }>
+     * @return array<string,array{ longName: string, shortName: string, defaultValue: string|null }>
      */
     public function getOptions(): array
     {

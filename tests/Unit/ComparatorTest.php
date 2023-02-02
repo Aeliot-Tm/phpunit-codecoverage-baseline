@@ -22,7 +22,7 @@ final class ComparatorTest extends TestCase
         $cloverReader->method('read')->willReturn($cloverData);
         $comparator = new Comparator($baselineReader, $cloverReader);
 
-        self::assertSame($expected, $comparator->compare());
+        self::assertSame($expected, $comparator->compare()->getRegressedNames());
     }
 
     public function getDataForTestPositiveFlow(): iterable
