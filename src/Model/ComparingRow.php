@@ -34,6 +34,9 @@ final class ComparingRow
         return 0 > $this->progress;
     }
 
+    /**
+     * @return array<string,string>
+     */
     public function getValues(): array
     {
         $progressPrefix = (0 < $this->progress) ? '+' : '';

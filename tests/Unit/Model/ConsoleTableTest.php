@@ -103,6 +103,9 @@ final class ConsoleTableTest extends TestCase
         self::assertSame($expected, (new ConsoleTable($columns))->getContent());
     }
 
+    /**
+     * @return iterable<array{ 0: string, 1: array<int|string,string>, 2: array<int|string,string> }>
+     */
     public function getDataForTestAddComparingPositiveFlow(): iterable
     {
         yield 'with string keys' => [
@@ -138,6 +141,9 @@ final class ConsoleTableTest extends TestCase
         ];
     }
 
+    /**
+     * @return iterable<array{ 0: string, 1: array<int|string,string>, 2: array<int|string,string> }>
+     */
     public function getDataForTestAddComparingRowSortsValues(): iterable
     {
         yield 'string keys, sorted columns & values' => [
@@ -237,6 +243,9 @@ final class ConsoleTableTest extends TestCase
         ];
     }
 
+    /**
+     * @return iterable<array{ 0: array<int|string,string>, 1: array<int|string,string> }>
+     */
     public function getDataForTestAddComparingRowThrowsExceptionOnInvalidKey(): iterable
     {
         yield [
@@ -282,6 +291,9 @@ final class ConsoleTableTest extends TestCase
         ];
     }
 
+    /**
+     * @return iterable<array{ 0: array<int|string,string>, 1: array<int|string,string> }>
+     */
     public function getDataForTestAddComparingRowThrowsExceptionOnExtraKey(): iterable
     {
         yield [
@@ -309,12 +321,18 @@ final class ConsoleTableTest extends TestCase
         ];
     }
 
+    /**
+     * @return iterable<array{ 0: array<string>, 1: array<string> }>
+     */
     public function getDataForTestAddLineThrowsExceptionOnValuesCountNotSameAsColumns(): iterable
     {
         yield [['Column 1', 'Column 2'], ['Value 1']];
         yield [['Column 1', 'Column 2'], ['Value 1', 'Value 2', 'Value 3']];
     }
 
+    /**
+     * @return iterable<array{ 0: string, 1: array<string>, 2: array<string> }>
+     */
     public function getDataForTestExtendsByColumn(): iterable
     {
         yield [
@@ -337,6 +355,9 @@ final class ConsoleTableTest extends TestCase
         ];
     }
 
+    /**
+     * @return iterable<array{ 0: string, 1: array<string>, 2: array<string> }>
+     */
     public function getDataForTestExtendsByValue(): iterable
     {
         yield [
@@ -359,6 +380,9 @@ final class ConsoleTableTest extends TestCase
         ];
     }
 
+    /**
+     * @return iterable<array{ 0: string, 1: array<string> }>
+     */
     public function getDataForTestPrintHeaders(): iterable
     {
         yield [

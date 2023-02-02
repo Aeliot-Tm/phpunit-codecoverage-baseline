@@ -13,8 +13,12 @@ final class ComparatorTest extends TestCase
 {
     /**
      * @dataProvider getDataForTestPositiveFlow
+     *
+     * @param string[] $expected
+     * @param array<string,int> $baseline
+     * @param array<string,int> $cloverData
      */
-    public function testPositiveFlow(array $expected, array $baseline, array $cloverData): void
+    public function testRegressedNamesPositiveFlow(array $expected, array $baseline, array $cloverData): void
     {
         $baselineReader = $this->createMock(BaselineReader::class);
         $baselineReader->method('read')->willReturn($baseline);
@@ -25,6 +29,13 @@ final class ComparatorTest extends TestCase
         self::assertSame($expected, $comparator->compare()->getRegressedNames());
     }
 
+    /**
+     * @return iterable<array{
+     *      0: array<string>,
+     *      1: array<string,int>,
+     *      2: array<string,int>
+     * }>
+     */
     public function getDataForTestPositiveFlow(): iterable
     {
         yield [

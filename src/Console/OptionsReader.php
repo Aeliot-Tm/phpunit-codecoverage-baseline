@@ -81,6 +81,11 @@ final class OptionsReader
         return $duplicates;
     }
 
+    /**
+     * @param array<string,mixed> $data
+     *
+     * @return array<string,mixed>
+     */
     private function setDefaults(array $data): array
     {
         $options = $this->config->getOptions();

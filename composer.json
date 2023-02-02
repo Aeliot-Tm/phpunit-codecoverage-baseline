@@ -11,7 +11,10 @@
   },
   "require-dev": {
     "phpunit/phpunit": "^9.5",
-    "dg/bypass-finals": "^1.4"
+    "dg/bypass-finals": "^1.4",
+    "phpstan/phpstan": "^1.9",
+    "phpstan/phpstan-phpunit": "^1.3",
+    "phpstan/extension-installer": "^1.2"
   },
   "autoload": {
     "psr-4": {
@@ -28,6 +31,12 @@
     "bin/pccb_clover_compare"
   ],
   "scripts": {
-    "test": "vendor/bin/phpunit"
+    "test": "vendor/bin/phpunit",
+    "phpstan-analise": "vendor/bin/phpstan analyse"
+  },
+  "config": {
+    "allow-plugins": {
+      "phpstan/extension-installer": true
+    }
   }
 }

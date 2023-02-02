@@ -58,6 +58,9 @@ final class CloverReaderTest extends TestCase
         (new CloverReader($path))->read();
     }
 
+    /**
+     * @return iterable<array<int,string>>
+     */
     public function getDataForTestThrowExceptionWithoutMetrics(): iterable
     {
         yield [__DIR__ . '/../../fixtures/clover/clover_without_metrics.xml'];

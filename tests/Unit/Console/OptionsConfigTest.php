@@ -76,6 +76,9 @@ final class OptionsConfigTest extends TestCase
         (new OptionsConfig())->add('any_key', 'aa', 'any string');
     }
 
+    /**
+     * @return iterable<array{ 0: array<string,string>, 1: array<int,array<int,string>> }>
+     */
     public function getDataForTestAliases(): iterable
     {
         $dataSet = [[], []];
@@ -88,6 +91,9 @@ final class OptionsConfigTest extends TestCase
         }
     }
 
+    /**
+     * @return iterable<array{ 0: array<string,array<string,string>>, 1: array<int,array<int,string>> }>
+     */
     public function getDataForTestOptions(): iterable
     {
         $dataSet = [[], []];
@@ -108,6 +114,9 @@ final class OptionsConfigTest extends TestCase
         }
     }
 
+    /**
+     * @return iterable<array{ 0: array<int,string>, 1: array<int,array<int,string>> }>
+     */
     public function getDataForTestPrepareLongOptions(): iterable
     {
         $dataSet = [[], []];
@@ -119,6 +128,9 @@ final class OptionsConfigTest extends TestCase
             yield $dataSet;
         }
     }
+    /**
+     * @return iterable<array{ 0: string, 1: array<int,array<int,string>> }>
+     */
 
     public function getDataForTestPrepareShortOptions(): iterable
     {
@@ -132,6 +144,9 @@ final class OptionsConfigTest extends TestCase
         }
     }
 
+    /**
+     * @return iterable<array<array<int,array<int,string>>>>
+     */
     public function getDataForTestThrowExceptionOnDuplicateName(): iterable
     {
         yield [[
