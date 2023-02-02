@@ -1,0 +1,10 @@
+{
+  "methods": 10,
+  "coveredmethods": 5,
+  "conditionals": 10,
+  "coveredconditionals": 4,
+  "statements": 10,
+  "coveredstatements": 7,
+  "elements": 10,
+  "coveredelements": 5
+}
