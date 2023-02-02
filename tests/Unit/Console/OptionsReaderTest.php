@@ -50,6 +50,9 @@ final class OptionsReaderTest extends TestCase
         $this->buildOptionsReader($options, $values)->read();
     }
 
+    /**
+     * @return iterable<array{ 0: array<string,string>, 1: array<int,array<string>> }>
+     */
     public function getDataForTestGetDefaultValues(): iterable
     {
         $dataSetForLongNames = [[], [], []];
@@ -69,6 +72,13 @@ final class OptionsReaderTest extends TestCase
         }
     }
 
+    /**
+     * @return iterable<array{
+     *     0: array<string,string>,
+     *     1: array<string,string>,
+     *     2: array<int,array<string>>
+     * }>
+     */
     public function getDataForTestPositiveFlow(): iterable
     {
         $dataSetForLongNames = [[], [], []];
@@ -91,6 +101,9 @@ final class OptionsReaderTest extends TestCase
         }
     }
 
+    /**
+     * @return iterable<array{ 0: array<string,string|array<string>>, 1: array<int,array<string>> }>
+     */
     public function getDataForTestThrowExceptionOnDuplicates(): iterable
     {
         yield [['a' => ['value1', 'value2']], [['long_a', 'a', 'any string']]];
@@ -98,7 +111,7 @@ final class OptionsReaderTest extends TestCase
     }
 
     /**
-     * @param array<int,array<int,string>> $options
+     * @param array<int,array<int|string,string>> $options
      */
     private function buildOptionsConfig(array $options): OptionsConfig
     {
@@ -112,6 +125,7 @@ final class OptionsReaderTest extends TestCase
 
     /**
      * @param array<int,array<int,string>> $options
+     * @param array<string,string|array<int,string>> $values
      */
     private function buildOptionsReader(array $options, array $values): OptionsReader
     {

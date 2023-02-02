@@ -25,6 +25,8 @@ final class ComparingRowTest extends TestCase
 
     /**
      * @dataProvider getDataForTestNumbersFormattingOnJsonSerialise
+     *
+     * @param array<string,string> $expectedResult
      */
     public function testNumbersFormattingOnJsonSerialise(array $expectedResult, float $old, float $new): void
     {
@@ -32,6 +34,9 @@ final class ComparingRowTest extends TestCase
         self::assertSame($expectedResult, $row->getValues());
     }
 
+    /**
+     * @return iterable<array{ 0: array<string,string>, 1: float, 2: float }>
+     */
     public function getDataForTestNumbersFormattingOnJsonSerialise(): iterable
     {
         yield 'no coverage' => [

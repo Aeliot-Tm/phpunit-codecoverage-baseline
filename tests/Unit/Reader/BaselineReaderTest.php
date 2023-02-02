@@ -62,6 +62,9 @@ final class BaselineReaderTest extends TestCase
         (new BaselineReader($path))->read();
     }
 
+    /**
+     * @return iterable<array{ 0: array<string,int>, 1: string }>
+     */
     public function getDataForTestPositiveFlow(): iterable
     {
         yield [
@@ -123,12 +126,18 @@ final class BaselineReaderTest extends TestCase
         ];
     }
 
+    /**
+     * @return iterable<array<string>>
+     */
     public function getDataForTestThrowExceptionOnEmptyBaseline(): iterable
     {
         yield [__DIR__ . '/../../fixtures/baseline/baseline_empty.json'];
         yield [__DIR__ . '/../../fixtures/baseline/baseline_with_another_fields_only.json'];
     }
 
+    /**
+     * @return iterable<array<string>>
+     */
     public function getDataForTestThrowExceptionWithNotIntValue(): iterable
     {
         yield [__DIR__ . '/../../fixtures/baseline/baseline_with_not_int_1.json'];

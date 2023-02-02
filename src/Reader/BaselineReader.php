@@ -20,7 +20,6 @@ final class BaselineReader
      */
     public function read(): array
     {
-        /** @var array<string,int> $baseline */
         $baseline = $this->sanitize($this->getBaseline());
 
         if (!$baseline) {
@@ -39,11 +38,11 @@ final class BaselineReader
      */
     private function getBaseline(): array
     {
-        if (!file_exists($this->path)) {
+        if (!file_exists($this->path) || !is_file($this->path) || !is_readable($this->path)) {
             throw new \RuntimeException(sprintf('Code coverage baseline "%s" does not exist.', $this->path));
         }
 
-        $baseline = json_decode(file_get_contents($this->path), true, 512, JSON_THROW_ON_ERROR);
+        $baseline = json_decode((string) file_get_contents($this->path), true, 512, JSON_THROW_ON_ERROR);
         if (!\is_array($baseline)) {
             throw new \DomainException('Cannot read baseline');
         }

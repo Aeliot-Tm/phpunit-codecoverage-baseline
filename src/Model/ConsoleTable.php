@@ -18,6 +18,9 @@ final class ConsoleTable
      */
     private array $columnsKeys;
 
+    /**
+     * @var array<int,int>
+     */
     private array $columnsWidth;
 
     /**
@@ -86,6 +89,9 @@ final class ConsoleTable
         return $this->buildTableLine(array_fill(0, count($this->columns), ''), '-');
     }
 
+    /**
+     * @param array<int,string> $values
+     */
     private function buildTableLine(array $values, string $filler = ' '): string
     {
         foreach ($values as $index => $value) {

@@ -16,10 +16,10 @@ final class BaselineBuilderTest extends TestCase
         $data = ['a' => 1, 'b' => 2];
 
         $baselineWriter = $this->createMock(BaselineWriter::class);
-        $baselineWriter->expects($this->once())->method('write')->with($data);
+        $baselineWriter->expects(self::once())->method('write')->with($data);
 
         $cloverReader = $this->createMock(CloverReader::class);
-        $cloverReader->expects($this->once())->method('read')->willReturn($data);
+        $cloverReader->expects(self::once())->method('read')->willReturn($data);
 
         (new BaselineBuilder($baselineWriter, $cloverReader))->build();
     }
