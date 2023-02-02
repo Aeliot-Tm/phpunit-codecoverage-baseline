@@ -6,9 +6,9 @@ namespace Aeliot\PHPUnitCodeCoverageBaseline\Test\Unit\Model;
 
 use Aeliot\PHPUnitCodeCoverageBaseline\Model\ComparingRow;
 use Aeliot\PHPUnitCodeCoverageBaseline\Model\ConsoleTable;
-use PHPUnit\Framework\TestCase;
+use Aeliot\PHPUnitCodeCoverageBaseline\Test\Unit\UnitTestCase;
 
-final class ConsoleTableTest extends TestCase
+final class ConsoleTableTest extends UnitTestCase
 {
     /**
      * @dataProvider getDataForTestAddComparingPositiveFlow

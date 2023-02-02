@@ -48,7 +48,9 @@ if ($isVerbose) {
     ]);
 
     $rows = $results->getRows();
-    array_walk($rows, static fn (ComparingRow $x) => $table->addComparingRow($x));
+    array_walk($rows, static function (ComparingRow $x) use ($table) {
+        $table->addComparingRow($x);
+    });
 
     echo $table->getContent();
 }

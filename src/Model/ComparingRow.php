@@ -6,10 +6,25 @@ namespace Aeliot\PHPUnitCodeCoverageBaseline\Model;
 
 final class ComparingRow
 {
-    private string $name;
-    private float $old;
-    private float $new;
-    private float $progress;
+    /**
+     * @var string
+     */
+    private $name;
+
+    /**
+     * @var float
+     */
+    private $old;
+
+    /**
+     * @var float
+     */
+    private $new;
+
+    /**
+     * @var float
+     */
+    private $progress;
 
     public function __construct(string $name, float $old, float $new)
     {

@@ -6,8 +6,15 @@ namespace Aeliot\PHPUnitCodeCoverageBaseline\Console;
 
 final class OptionsReader
 {
-    private OptionsConfig $config;
-    private GetOpt $getOpt;
+    /**
+     * @var OptionsConfig
+     */
+    private $config;
+
+    /**
+     * @var GetOpt
+     */
+    private $getOpt;
 
     public function __construct(OptionsConfig $config, GetOpt $getOpt)
     {
@@ -33,10 +40,10 @@ final class OptionsReader
      */
     private function checkOnDuplicates(array $data): void
     {
-        $duplicates = [
-            ...$this->filterArrayValues($data),
-            ...$this->filterDefinedByBothNames($data),
-        ];
+        $duplicates = array_merge(
+            $this->filterArrayValues($data),
+            $this->filterDefinedByBothNames($data)
+        );
 
         if ($duplicates) {
             $duplicates = array_unique($duplicates);
@@ -56,7 +63,9 @@ final class OptionsReader
     {
         $duplicates = [];
         $aliases = $this->config->getAliases();
-        $arrays = array_filter($data, static fn ($x): bool => \is_array($x));
+        $arrays = array_filter($data, static function ($x): bool {
+            return \is_array($x);
+        });
         foreach (array_keys($arrays) as $optionName) {
             $duplicates[] = $aliases[$optionName] ?? $optionName;
         }
@@ -90,7 +99,7 @@ final class OptionsReader
     {
         $options = $this->config->getOptions();
         foreach ($this->config->getAliases() as $longName) {
-            if(isset($data[$longName])){
+            if (isset($data[$longName])) {
                 continue;
             }
 

@@ -27,4 +27,16 @@
             <crap4j outputFile="build/coverage/crap4j.xml" threshold="50"/>
         </report>
     </coverage>
+
+    <!-- >>>: Code coverage report for old versions of PHPUnit -->
+    <filter>
+        <whitelist processUncoveredFilesFromWhitelist="true">
+            <directory suffix=".php">src</directory>
+        </whitelist>
+    </filter>
+    <logging>
+        <log type="coverage-html" target="build/coverage"/>
+        <log type="coverage-clover" target="build/coverage/clover.xml"/>
+    </logging>
+    <!-- <<<: Code coverage report for old versions of PHPUnit -->
 </phpunit>

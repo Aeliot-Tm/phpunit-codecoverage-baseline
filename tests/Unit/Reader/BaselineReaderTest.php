@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace Aeliot\PHPUnitCodeCoverageBaseline\Test\Unit\Reader;
 
 use Aeliot\PHPUnitCodeCoverageBaseline\Reader\BaselineReader;
-use PHPUnit\Framework\TestCase;
+use Aeliot\PHPUnitCodeCoverageBaseline\Test\Unit\UnitTestCase;
 
-final class BaselineReaderTest extends TestCase
+final class BaselineReaderTest extends UnitTestCase
 {
     /**
      * @dataProvider getDataForTestPositiveFlow
@@ -28,7 +28,7 @@ final class BaselineReaderTest extends TestCase
 
     public function testThrowExceptionOnBrokenFile(): void
     {
-        $this->expectException(\JsonException::class);
+        $this->expectException(\LogicException::class);
         $this->expectExceptionMessage('Syntax error');
         $path = __DIR__ . '/../../fixtures/baseline/baseline_invalid.json';
         (new BaselineReader($path))->read();

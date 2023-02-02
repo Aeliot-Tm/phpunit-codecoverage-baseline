@@ -8,7 +8,10 @@ use Aeliot\PHPUnitCodeCoverageBaseline\Enum\SupportedType;
 
 final class CloverReader
 {
-    private string $path;
+    /**
+     * @var string
+     */
+    private $path;
 
     public function __construct(string $path)
     {

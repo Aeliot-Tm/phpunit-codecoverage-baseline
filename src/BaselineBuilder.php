@@ -9,8 +9,15 @@ use Aeliot\PHPUnitCodeCoverageBaseline\Writer\BaselineWriter;
 
 final class BaselineBuilder
 {
-    private BaselineWriter $baselineWriter;
-    private CloverReader $cloverReader;
+    /**
+     * @var BaselineWriter
+     */
+    private $baselineWriter;
+
+    /**
+     * @var CloverReader
+     */
+    private $cloverReader;
 
     public function __construct(BaselineWriter $baselineWriter, CloverReader $cloverReader)
     {

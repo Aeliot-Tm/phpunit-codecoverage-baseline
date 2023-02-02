@@ -8,7 +8,10 @@ use Aeliot\PHPUnitCodeCoverageBaseline\Enum\SupportedType;
 
 final class BaselineReader
 {
-    private string $path;
+    /**
+     * @var string
+     */
+    private $path;
 
     public function __construct(string $path)
     {
@@ -26,7 +29,10 @@ final class BaselineReader
             throw new \DomainException('Empty baseline');
         }
 
-        if (array_filter($baseline, static fn ($x) => !\is_int($x))) {
+        $notIntValues = array_filter($baseline, static function ($x): bool {
+            return !\is_int($x);
+        });
+        if ($notIntValues) {
             throw new \DomainException('Invalid baseline data');
         }
 
@@ -42,7 +48,10 @@ final class BaselineReader
             throw new \RuntimeException(sprintf('Code coverage baseline "%s" does not exist.', $this->path));
         }
 
-        $baseline = json_decode((string) file_get_contents($this->path), true, 512, JSON_THROW_ON_ERROR);
+        $baseline = json_decode((string) file_get_contents($this->path), true);
+        if (json_last_error()) {
+            throw new \LogicException(json_last_error_msg());
+        }
         if (!\is_array($baseline)) {
             throw new \DomainException('Cannot read baseline');
         }

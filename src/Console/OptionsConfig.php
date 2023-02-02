@@ -9,12 +9,12 @@ final class OptionsConfig
     /**
      * @var array<string,string>
      */
-    private array $aliases = [];
+    private $aliases = [];
 
     /**
      * @var array<string,array{ longName: string, shortName: string, defaultValue: string|null }>
      */
-    private array $options = [];
+    private $options = [];
 
     public function add(
         string $longName,
@@ -70,7 +70,9 @@ final class OptionsConfig
      */
     private function mapToRequired(array $keys): array
     {
-        return array_map(static fn (string $x): string => "$x:", $keys);
+        return array_map(static function (string $x): string {
+            return "$x:";
+        }, $keys);
     }
 
     private function validateNames(string $longName, string $shortName): void
