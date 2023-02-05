@@ -3,26 +3,22 @@
 
 declare(strict_types=1);
 
-use Aeliot\PHPUnitCodeCoverageBaseline\BaselineBuilder;
-use Aeliot\PHPUnitCodeCoverageBaseline\Console\GetOpt;
-use Aeliot\PHPUnitCodeCoverageBaseline\Console\OptionsConfig;
-use Aeliot\PHPUnitCodeCoverageBaseline\Console\OptionsReader;
-use Aeliot\PHPUnitCodeCoverageBaseline\Reader\CloverReader;
-use Aeliot\PHPUnitCodeCoverageBaseline\Writer\BaselineWriter;
+use Aeliot\PHPUnitCodeCoverageBaseline\Command\CloverBuildBaselineCommand;
+use Aeliot\PHPUnitCodeCoverageBaseline\Enum\Version;
+use Symfony\Component\Console\Application;
 
 require __DIR__ . '/include_autoloader.php';
 
-$optionsConfig = new OptionsConfig();
-$optionsConfig->add('baseline', 'b', 'phpunit.clover.baseline.json');
-$optionsConfig->add('clover', 'c', 'build/coverage/clover.xml');
-
-/** @var array{ baseline: string, clover: string } $options */
-$options = (new OptionsReader($optionsConfig, new GetOpt()))->read();
-
 try {
-    $builder = new BaselineBuilder(new BaselineWriter($options['baseline']), new CloverReader($options['clover']));
-    $builder->build();
-} catch (\Exception $exception) {
+    $application = new Application('PCCB', Version::CURRENT);
+    $application->add($command = new CloverBuildBaselineCommand());
+    $application->setDefaultCommand($command->getName(), true);
+    $exitCode = $application->run();
+} catch (\Throwable $exception) {
     echo sprintf('[ERROR] %s%s', $exception->getMessage(), PHP_EOL);
-    exit(2);
+    $exitCode = 2;
+}
+
+if ($exitCode) {
+    exit($exitCode);
 }

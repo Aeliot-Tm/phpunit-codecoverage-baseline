@@ -31,17 +31,21 @@
   "require": {
     "php": "^7.1|^8.0",
     "ext-json": "*",
-    "ext-simplexml": "*"
+    "ext-simplexml": "*",
+    "symfony/console": "^3.4|^4.0|^5.0|^6.0"
   },
   "require-dev": {
     "dg/bypass-finals": "^1.4",
     "phpstan/extension-installer": "*",
     "phpstan/phpstan": "*",
     "phpstan/phpstan-phpunit": "*",
-    "phpunit/phpunit": "*"
+    "phpunit/phpunit": "*,<10.0"
   },
   "scripts": {
     "test": "vendor/bin/phpunit",
     "phpstan-analise": "vendor/bin/phpstan analyse"
+  },
+  "suggest": {
+    "phpunit/phpunit": "PHPUnit must be used to generate code coverage report."
   }
 }
