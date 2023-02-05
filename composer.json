@@ -39,7 +39,7 @@
     "phpstan/extension-installer": "*",
     "phpstan/phpstan": "*",
     "phpstan/phpstan-phpunit": "*",
-    "phpunit/phpunit": "*"
+    "phpunit/phpunit": "*,<10.0"
   },
   "scripts": {
     "test": "vendor/bin/phpunit",
