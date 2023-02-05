@@ -44,5 +44,8 @@
   "scripts": {
     "test": "vendor/bin/phpunit",
     "phpstan-analise": "vendor/bin/phpstan analyse"
+  },
+  "suggest": {
+    "phpunit/phpunit": "PHPUnit must be used to generate code coverage report."
   }
 }
