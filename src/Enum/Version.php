@@ -19,8 +19,9 @@ final class Version
         // forbid creating of an instance
     }
 
-    private function __wakeup()
+    public function __wakeup()
     {
         // forbid creating of an instance
+        throw new \DomainException(sprintf('It is forbidden to create an instance of %s', __CLASS__));
     }
 }
