@@ -13,16 +13,12 @@ final class CloverReaderTest extends UnitTestCase
     {
         $path = __DIR__ . '/../../fixtures/clover/clover.xml';
         $expected = [
-            'methods' => 1,
-            'conditionals' => 3,
-            'statements' => 5,
-            'elements' => 7,
-            'coveredmethods' => 2,
-            'coveredconditionals' => 4,
-            'coveredstatements' => 6,
-            'coveredelements' => 8,
+            'methods' => 50.0,
+            'conditionals' => 75.0,
+            'statements' => 83.33,
+            'elements' => 87.5,
         ];
-        self::assertEquals($expected, (new CloverReader($path))->read());
+        self::assertEquals($expected, iterator_to_array((new CloverReader($path))->read()));
     }
 
     public function testThrowExceptionOnFileNotExist(): void

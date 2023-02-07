@@ -6,7 +6,7 @@ namespace Aeliot\PHPUnitCodeCoverageBaseline\Reader;
 
 use Aeliot\PHPUnitCodeCoverageBaseline\Enum\SupportedType;
 
-final class BaselineReader
+final class BaselineReader implements BaselineReaderInterface
 {
     /**
      * @var string
@@ -23,17 +23,10 @@ final class BaselineReader
      */
     public function read(): array
     {
-        $baseline = $this->sanitize($this->getBaseline());
+        $baseline = $this->getBaseline();
 
         if (!$baseline) {
             throw new \DomainException('Empty baseline');
-        }
-
-        $notIntValues = array_filter($baseline, static function ($x): bool {
-            return !\is_int($x);
-        });
-        if ($notIntValues) {
-            throw new \DomainException('Invalid baseline data');
         }
 
         return $baseline;
@@ -54,23 +47,6 @@ final class BaselineReader
         }
         if (!\is_array($baseline)) {
             throw new \DomainException('Cannot read baseline');
-        }
-
-        return $baseline;
-    }
-
-    /**
-     * @param array<string,mixed> $data
-     *
-     * @return array<string,mixed>
-     */
-    private function sanitize(array $data): array
-    {
-        $baseline = [];
-        foreach (SupportedType::getSupportedKeys() as $key) {
-            if (isset($data[$key])) {
-                $baseline[$key] = $data[$key];
-            }
         }
 
         return $baseline;
