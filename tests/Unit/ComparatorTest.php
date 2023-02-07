@@ -8,9 +8,8 @@ use Aeliot\PHPUnitCodeCoverageBaseline\Comparator;
 use Aeliot\PHPUnitCodeCoverageBaseline\Model\Coverage;
 use Aeliot\PHPUnitCodeCoverageBaseline\Reader\BaselineTransformingReader;
 use Aeliot\PHPUnitCodeCoverageBaseline\Reader\CloverReader;
-use PHPUnit\Framework\TestCase;
 
-final class ComparatorTest extends TestCase
+final class ComparatorTest extends UnitTestCase
 {
     /**
      * @dataProvider getDataForTestPositiveFlow

@@ -6,9 +6,9 @@ namespace Aeliot\PHPUnitCodeCoverageBaseline\Test\Unit\Model;
 
 use Aeliot\PHPUnitCodeCoverageBaseline\Model\ComparingResult;
 use Aeliot\PHPUnitCodeCoverageBaseline\Model\ComparingRow;
-use PHPUnit\Framework\TestCase;
+use Aeliot\PHPUnitCodeCoverageBaseline\Test\Unit\UnitTestCase;
 
-final class ComparingResultTest extends TestCase
+final class ComparingResultTest extends UnitTestCase
 {
     public function testImproveDetecting(): void
     {

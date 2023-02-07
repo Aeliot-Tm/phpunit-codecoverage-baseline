@@ -8,9 +8,8 @@ use Aeliot\PHPUnitCodeCoverageBaseline\BaselineBuilder;
 use Aeliot\PHPUnitCodeCoverageBaseline\Model\Coverage;
 use Aeliot\PHPUnitCodeCoverageBaseline\Reader\CloverReader;
 use Aeliot\PHPUnitCodeCoverageBaseline\Writer\BaselineWriter;
-use PHPUnit\Framework\TestCase;
 
-final class BaselineBuilderTest extends TestCase
+final class BaselineBuilderTest extends UnitTestCase
 {
     public function testPositiveFlow(): void
     {
