@@ -12,17 +12,6 @@ final class SupportedType
     public const STATEMENTS = 'statements';
 
     /**
-     * @return array<string,string>
-     */
-    public static function getCoveredTypes(): array
-    {
-        $supportedTypes = self::getSupportedTypes();
-        $coveredTypes = self::mapCoveredTypes($supportedTypes);
-
-        return array_combine($supportedTypes, $coveredTypes);
-    }
-
-    /**
      * @return string[]
      */
     public static function getSupportedKeys(): array

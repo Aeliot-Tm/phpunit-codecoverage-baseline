@@ -1,0 +1,9 @@
+{
+  "version": "2.0",
+  "options": {
+    "methods": 1.0,
+    "conditionals": 30.0,
+    "statements": 50.0,
+    "elements": 70.0
+  }
+}
