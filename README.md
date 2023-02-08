@@ -14,37 +14,15 @@ composer require --dev aeliot-tm/phpunit-codecoverage-baseline
 Usage
 -----
 
-### Compare Clover report with baseline
-
-1. Add baseline file to the project. See [example](docs/phpunit.clover.baseline.json).
-2. Run your tests with [configured](https://phpunit.readthedocs.io/en/9.5/configuration.html#the-report-element) 
-   code coverage Clover report or with [command line option](https://phpunit.readthedocs.io/en/9.5/textui.html?highlight=clover#command-line-options).
+**To get started:**
+1. Run PHPUnit with the switched on Clover report in [xml config file](https://phpunit.readthedocs.io/en/9.5/configuration.html#the-report-element)
+   or with [command-line options](https://phpunit.readthedocs.io/en/9.5/textui.html?highlight=clover#command-line-options).
    ```shell
    phpunit --coverage-clover 'build/coverage/clover.xml' tests/
    ```
-3. Call [script](bin/pccb_clover_compare).
-   ```shell
-   vendor/bin/pccb_clover_compare
-   ```
-   It accepts options:
+2. [Build](docs/clover_build_baseline.md) baseline for clover report and commit into your project.
 
-| Full name    | Short name | Description                                  | Default value                  |
-|--------------|------------|----------------------------------------------|--------------------------------|
-| `--baseline` | `-b`       | Path to the baseline                         | `phpunit.clover.baseline.json` |
-| `--clover`   | `-c`       | Path to the Clover report                    | `build/coverage/clover.xml`    |
-| `--verbose`  | `-v`       | Generates verbose report. Accepts value: `v` |                                |
-
-
-### Build baseline for Clover report
-
-1. Run your tests.
-2. Call [script](bin/pccb_clover_build_baseline).
-   ```shell
-   vendor/bin/pccb_clover_build_baseline
-   ```
-   It accepts options:
-
-| Full name    | Short name | Description               | Default value                  |
-|--------------|------------|---------------------------|--------------------------------|
-| `--baseline` | `-b`       | Path to the baseline      | `phpunit.clover.baseline.json` |
-| `--clover`   | `-c`       | Path to the Clover report | `build/coverage/clover.xml`    |
+**Regular using:**
+1. Run [comparing](docs/clover_compare_with_baseline.md) of current Clover report with the baseline. 
+   It is recommended to configure it on your GitHub or GitLab CI.
+2. Update your baseline time-to-time when you have progress with your code coverage.
