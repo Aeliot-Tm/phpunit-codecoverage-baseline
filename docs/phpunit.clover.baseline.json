@@ -1,10 +1,9 @@
 {
-  "methods": 160,
-  "coveredmethods": 159,
-  "conditionals": 0,
-  "coveredconditionals": 0,
-  "statements": 296,
-  "coveredstatements": 295,
-  "elements": 456,
-  "coveredelements": 454
+  "version": "2.0",
+  "options": {
+    "methods": 16.01,
+    "conditionals": 0.00,
+    "statements": 29.61,
+    "elements": 45.61
+  }
 }
