@@ -4,15 +4,22 @@ declare(strict_types=1);
 
 namespace Aeliot\PHPUnitCodeCoverageBaseline\Model;
 
+/**
+ * @template TKey of string
+ * @template TValue af float
+ *
+ * @phpstan-implements \IteratorAggregate<TKey,TValue>
+ * @phpstan-implements \ArrayIterator<TKey,TValue>
+ */
 final class Coverage implements \ArrayAccess, \IteratorAggregate
 {
     /**
-     * @var array<string,float>
+     * @var array<TKey,TValue>
      */
     private $options = [];
 
     /**
-     * @param array<string,float|string> $options
+     * @param array<TKey,TValue|string> $options
      */
     public function __construct(array $options)
     {
@@ -21,16 +28,25 @@ final class Coverage implements \ArrayAccess, \IteratorAggregate
         }
     }
 
+    /**
+     * @return \ArrayIterator<TKey,TValue>
+     */
     public function getIterator(): \ArrayIterator
     {
         return new \ArrayIterator($this->options);
     }
 
+    /**
+     * @param TKey $offset
+     */
     public function offsetExists($offset): bool
     {
         return isset($this->options[$offset]);
     }
 
+    /**
+     * @param TKey $offset
+     */
     public function offsetGet($offset): float
     {
         if (!isset($this->options[$offset])) {
@@ -40,6 +56,10 @@ final class Coverage implements \ArrayAccess, \IteratorAggregate
         return $this->options[$offset];
     }
 
+    /**
+     * @param TKey $offset
+     * @param TValue $value
+     */
     public function offsetSet($offset, $value): void
     {
         if (is_numeric($value)) {
@@ -52,6 +72,9 @@ final class Coverage implements \ArrayAccess, \IteratorAggregate
         $this->options[$offset] = $value;
     }
 
+    /**
+     * @param TKey $offset
+     */
     public function offsetUnset($offset): void
     {
         unset($this->options[$offset]);

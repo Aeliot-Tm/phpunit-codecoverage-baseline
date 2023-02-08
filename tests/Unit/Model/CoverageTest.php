@@ -101,6 +101,9 @@ final class CoverageTest extends UnitTestCase
         $coverage['any_key'];
     }
 
+    /**
+     * @return iterable<int,array<string,mixed>>
+     */
     public function getDataForTestAcceptingOfNumericValue(): iterable
     {
         foreach ($this->getNumericValues() as $value) {
@@ -108,6 +111,9 @@ final class CoverageTest extends UnitTestCase
         }
     }
 
+    /**
+     * @return iterable<int,array<string,mixed>>
+     */
     public function getDataForTestThrowExceptionOnNotNumericValue(): iterable
     {
         foreach ($this->getNotNumericValues() as $value) {
@@ -115,6 +121,9 @@ final class CoverageTest extends UnitTestCase
         }
     }
 
+    /**
+     * @return <int,mixed>
+     */
     public function getNumericValues(): array
     {
         return [
@@ -125,6 +134,9 @@ final class CoverageTest extends UnitTestCase
         ];
     }
 
+    /**
+     * @return array<int,mixed>
+     */
     public function getNotNumericValues(): iterable
     {
         return [

@@ -26,9 +26,12 @@ final class ComparingRow
      */
     private $progress;
 
-    public function __construct(string $name, float $old, float $new)
+    /**
+     * @param int|string $name
+     */
+    public function __construct($name, float $old, float $new)
     {
-        $this->name = $name;
+        $this->name = (string) $name;
         $this->old = round($old * 100, 2);
         $this->new = round($new * 100, 2);
         $this->progress = $this->new - $this->old;
