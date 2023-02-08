@@ -7,6 +7,9 @@ namespace Aeliot\PHPUnitCodeCoverageBaseline;
 use Symfony\Component\Console\Input\InputDefinition;
 use Symfony\Component\Console\Input\InputOption;
 
+/**
+ * @codeCoverageIgnore
+ */
 final class CloverInputOptionsAssigner
 {
     public static function addBaselineOption(InputDefinition $definition): void

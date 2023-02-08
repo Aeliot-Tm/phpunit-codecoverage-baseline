@@ -43,4 +43,14 @@ abstract class UnitTestCase extends TestCase
             $this->expectException(Warning::class);
         }
     }
+
+    protected function getTmpDir(): string
+    {
+        $path = sys_get_temp_dir() . '/pccb';
+        if (!file_exists($path)) {
+            mkdir($path);
+        }
+
+        return $path;
+    }
 }

@@ -5,25 +5,25 @@ declare(strict_types=1);
 namespace Aeliot\PHPUnitCodeCoverageBaseline\Test\Unit;
 
 use Aeliot\PHPUnitCodeCoverageBaseline\Comparator;
-use Aeliot\PHPUnitCodeCoverageBaseline\Reader\BaselineReader;
+use Aeliot\PHPUnitCodeCoverageBaseline\Model\Coverage;
+use Aeliot\PHPUnitCodeCoverageBaseline\Reader\BaselineTransformingReader;
 use Aeliot\PHPUnitCodeCoverageBaseline\Reader\CloverReader;
-use PHPUnit\Framework\TestCase;
 
-final class ComparatorTest extends TestCase
+final class ComparatorTest extends UnitTestCase
 {
     /**
      * @dataProvider getDataForTestPositiveFlow
      *
      * @param string[] $expected
-     * @param array<string,int> $baseline
-     * @param array<string,int> $cloverData
+     * @param array<string,float> $baseline
+     * @param array<string,float> $cloverData
      */
     public function testRegressedNamesPositiveFlow(array $expected, array $baseline, array $cloverData): void
     {
-        $baselineReader = $this->createMock(BaselineReader::class);
-        $baselineReader->method('read')->willReturn($baseline);
+        $baselineReader = $this->createMock(BaselineTransformingReader::class);
+        $baselineReader->method('read')->willReturn(new Coverage($baseline));
         $cloverReader = $this->createMock(CloverReader::class);
-        $cloverReader->method('read')->willReturn($cloverData);
+        $cloverReader->method('read')->willReturn(new Coverage($cloverData));
         $comparator = new Comparator($baselineReader, $cloverReader);
 
         self::assertSame($expected, $comparator->compare()->getRegressedNames());
@@ -32,8 +32,8 @@ final class ComparatorTest extends TestCase
     /**
      * @return iterable<array{
      *      0: array<string>,
-     *      1: array<string,int>,
-     *      2: array<string,int>
+     *      1: array<string,float>,
+     *      2: array<string,float>
      * }>
      */
     public function getDataForTestPositiveFlow(): iterable
@@ -41,42 +41,30 @@ final class ComparatorTest extends TestCase
         yield [
             [],
             [
-                'methods' => 0,
-                'coveredmethods' => 0,
-                'conditionals' => 0,
-                'coveredconditionals' => 0,
-                'statements' => 0,
-                'coveredstatements' => 0,
-                'elements' => 0,
-                'coveredelements' => 0,
+                'methods' => 0.0,
+                'conditionals' => 0.0,
+                'statements' => 0.0,
+                'elements' => 0.0,
             ],
             [
-                'methods' => 0,
-                'coveredmethods' => 0,
-                'conditionals' => 0,
-                'coveredconditionals' => 0,
-                'statements' => 0,
-                'coveredstatements' => 0,
-                'elements' => 0,
-                'coveredelements' => 0,
+                'methods' => 0.0,
+                'conditionals' => 0.0,
+                'statements' => 0.0,
+                'elements' => 0.0,
             ],
         ];
 
         yield [
             [],
             [
-                'methods' => 0,
-                'conditionals' => 0,
+                'methods' => 0.0,
+                'conditionals' => 0.0,
             ],
             [
-                'methods' => 0,
-                'coveredmethods' => 0,
-                'conditionals' => 0,
-                'coveredconditionals' => 0,
-                'statements' => 0,
-                'coveredstatements' => 0,
-                'elements' => 0,
-                'coveredelements' => 0,
+                'methods' => 0.0,
+                'conditionals' => 0.0,
+                'statements' => 0.0,
+                'elements' => 0.0,
             ],
         ];
 
@@ -85,18 +73,13 @@ final class ComparatorTest extends TestCase
                 'methods',
             ],
             [
-                'methods' => 1,
-                'coveredmethods' => 1,
+                'methods' => 100.0,
             ],
             [
-                'methods' => 1,
-                'coveredmethods' => 0,
-                'conditionals' => 1,
-                'coveredconditionals' => 0,
-                'statements' => 1,
-                'coveredstatements' => 0,
-                'elements' => 1,
-                'coveredelements' => 0,
+                'methods' => 0.0,
+                'conditionals' => 0.0,
+                'statements' => 0.0,
+                'elements' => 0.0,
             ],
         ];
 
@@ -105,18 +88,13 @@ final class ComparatorTest extends TestCase
                 'conditionals',
             ],
             [
-                'conditionals' => 1,
-                'coveredconditionals' => 1,
+                'conditionals' => 100.0,
             ],
             [
-                'methods' => 1,
-                'coveredmethods' => 0,
-                'conditionals' => 1,
-                'coveredconditionals' => 0,
-                'statements' => 1,
-                'coveredstatements' => 0,
-                'elements' => 1,
-                'coveredelements' => 0,
+                'methods' => 0.0,
+                'conditionals' => 0.0,
+                'statements' => 0.0,
+                'elements' => 0.0,
             ],
         ];
 
@@ -125,18 +103,13 @@ final class ComparatorTest extends TestCase
                 'statements',
             ],
             [
-                'statements' => 1,
-                'coveredstatements' => 1,
+                'statements' => 100.0,
             ],
             [
-                'methods' => 1,
-                'coveredmethods' => 0,
-                'conditionals' => 1,
-                'coveredconditionals' => 0,
-                'statements' => 1,
-                'coveredstatements' => 0,
-                'elements' => 1,
-                'coveredelements' => 0,
+                'methods' => 0.0,
+                'conditionals' => 0.0,
+                'statements' => 0.0,
+                'elements' => 0.0,
             ],
         ];
 
@@ -145,18 +118,13 @@ final class ComparatorTest extends TestCase
                 'elements',
             ],
             [
-                'elements' => 1,
-                'coveredelements' => 1,
+                'elements' => 100.0,
             ],
             [
-                'methods' => 1,
-                'coveredmethods' => 0,
-                'conditionals' => 1,
-                'coveredconditionals' => 0,
-                'statements' => 1,
-                'coveredstatements' => 0,
-                'elements' => 1,
-                'coveredelements' => 0,
+                'methods' => 0.0,
+                'conditionals' => 0.0,
+                'statements' => 0.0,
+                'elements' => 0.0,
             ],
         ];
 
@@ -168,92 +136,64 @@ final class ComparatorTest extends TestCase
                 'elements',
             ],
             [
-                'methods' => 1,
-                'coveredmethods' => 1,
-                'conditionals' => 1,
-                'coveredconditionals' => 1,
-                'statements' => 1,
-                'coveredstatements' => 1,
-                'elements' => 1,
-                'coveredelements' => 1,
+                'methods' => 100.0,
+                'conditionals' => 100.0,
+                'statements' => 100.0,
+                'elements' => 100.0,
             ],
             [
-                'methods' => 1,
-                'coveredmethods' => 0,
-                'conditionals' => 1,
-                'coveredconditionals' => 0,
-                'statements' => 1,
-                'coveredstatements' => 0,
-                'elements' => 1,
-                'coveredelements' => 0,
+                'methods' => 0.0,
+                'conditionals' => 0.0,
+                'statements' => 0.0,
+                'elements' => 0.0,
             ],
         ];
 
         yield [
             [],
             [
-                'methods' => 1,
-                'coveredmethods' => 1,
-                'conditionals' => 1,
-                'coveredconditionals' => 1,
-                'statements' => 1,
-                'coveredstatements' => 1,
-                'elements' => 1,
-                'coveredelements' => 1,
+                'methods' => 100.0,
+                'conditionals' => 100.0,
+                'statements' => 100.0,
+                'elements' => 100.0,
             ],
             [
-                'methods' => 1,
-                'coveredmethods' => 1,
-                'conditionals' => 1,
-                'coveredconditionals' => 1,
-                'statements' => 1,
-                'coveredstatements' => 1,
-                'elements' => 1,
-                'coveredelements' => 1,
+                'methods' => 100.0,
+                'conditionals' => 100.0,
+                'statements' => 100.0,
+                'elements' => 100.0,
             ],
         ];
 
         yield [
             [],
             [
-                'methods' => 1,
-                'coveredmethods' => 0,
-                'conditionals' => 1,
-                'coveredconditionals' => 0,
-                'statements' => 1,
-                'coveredstatements' => 0,
-                'elements' => 1,
-                'coveredelements' => 0,
+                'methods' => 0.0,
+                'conditionals' => 0.0,
+                'statements' => 0.0,
+                'elements' => 0.0,
             ],
             [
-                'methods' => 1,
-                'coveredmethods' => 1,
-                'conditionals' => 1,
-                'coveredconditionals' => 1,
-                'statements' => 1,
-                'coveredstatements' => 1,
-                'elements' => 1,
-                'coveredelements' => 1,
+                'methods' => 100.0,
+                'conditionals' => 100.0,
+                'statements' => 100.0,
+                'elements' => 100.0,
             ],
         ];
 
         yield [
             [],
             [
-                'methods' => 1,
-                'conditionals' => 1,
-                'statements' => 1,
-                'elements' => 1,
+                'methods' => 0.0,
+                'conditionals' => 0.0,
+                'statements' => 0.0,
+                'elements' => 0.0,
             ],
             [
-                'methods' => 1,
-                'coveredmethods' => 1,
-                'conditionals' => 1,
-                'coveredconditionals' => 1,
-                'statements' => 1,
-                'coveredstatements' => 1,
-                'elements' => 1,
-                'coveredelements' => 1,
+                'methods' => 100.0,
+                'conditionals' => 100.0,
+                'statements' => 100.0,
+                'elements' => 100.0,
             ],
         ];
     }

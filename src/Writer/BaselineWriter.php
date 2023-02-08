@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Aeliot\PHPUnitCodeCoverageBaseline\Writer;
 
-/**
- * @codeCoverageIgnore
- */
+use Aeliot\PHPUnitCodeCoverageBaseline\Enum\Version;
+use Aeliot\PHPUnitCodeCoverageBaseline\Model\Coverage;
+
 final class BaselineWriter
 {
     /**
@@ -20,11 +20,15 @@ final class BaselineWriter
     }
 
     /**
-     * @param array<string,int> $baseline
+     * @param Coverage<string,float> $baseline
      */
-    public function write(array $baseline): void
+    public function write(Coverage $baseline): void
     {
-        $content = json_encode($baseline, JSON_PRETTY_PRINT);
+        $data = [
+            'version' => Version::CURRENT,
+            'options' => iterator_to_array($baseline),
+        ];
+        $content = json_encode($data, JSON_PRETTY_PRINT);
         if (json_last_error()) {
             throw new \LogicException(json_last_error_msg());
         }

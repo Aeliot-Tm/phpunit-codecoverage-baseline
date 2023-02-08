@@ -53,17 +53,7 @@ final class BaselineReaderTest extends UnitTestCase
     }
 
     /**
-     * @dataProvider getDataForTestThrowExceptionWithNotIntValue
-     */
-    public function testThrowExceptionWithNotIntValue(string $path): void
-    {
-        $this->expectException(\DomainException::class);
-        $this->expectExceptionMessage('Invalid baseline data');
-        (new BaselineReader($path))->read();
-    }
-
-    /**
-     * @return iterable<array{ 0: array<string,int>, 1: string }>
+     * @return iterable<array{ 0: array<string,mixed>, 1: string }>
      */
     public function getDataForTestPositiveFlow(): iterable
     {
@@ -91,6 +81,8 @@ final class BaselineReaderTest extends UnitTestCase
                 'coveredstatements' => 6,
                 'elements' => 7,
                 'coveredelements' => 8,
+                'another' => 9,
+                'coveredanother' => 10,
             ],
             __DIR__ . '/../../fixtures/baseline/baseline_with_another_fields.json',
         ];
@@ -124,6 +116,54 @@ final class BaselineReaderTest extends UnitTestCase
             ['methods' => 1],
             __DIR__ . '/../../fixtures/baseline/baseline_type_methods.json',
         ];
+
+        yield [
+            [
+                'another' => 0,
+                'coveredanother' => 0,
+            ],
+            __DIR__ . '/../../fixtures/baseline/baseline_with_another_fields_only.json',
+        ];
+
+        yield [
+            [
+                'version' => '2.0',
+                'options' => [
+                    'methods' => 1.0,
+                    'conditionals' => 30.0,
+                    'statements' => 50.0,
+                    'elements' => 70.0,
+                ],
+            ],
+            __DIR__ . '/../../fixtures/baseline/baseline_v2.json',
+        ];
+
+        yield [
+            [
+                'elements' => '1',
+            ],
+            __DIR__ . '/../../fixtures/baseline/baseline_with_not_int_1.json',
+        ];
+        yield [
+            [
+                'elements' => 1.9,
+            ],
+            __DIR__ . '/../../fixtures/baseline/baseline_with_not_int_2.json',
+        ];
+        yield [
+            [
+                'elements' => [],
+            ],
+            __DIR__ . '/../../fixtures/baseline/baseline_with_not_int_3.json',
+        ];
+        yield [
+            [
+                'elements' => [
+                    'field' => 'value',
+                ],
+            ],
+            __DIR__ . '/../../fixtures/baseline/baseline_with_not_int_4.json',
+        ];
     }
 
     /**
@@ -132,17 +172,5 @@ final class BaselineReaderTest extends UnitTestCase
     public function getDataForTestThrowExceptionOnEmptyBaseline(): iterable
     {
         yield [__DIR__ . '/../../fixtures/baseline/baseline_empty.json'];
-        yield [__DIR__ . '/../../fixtures/baseline/baseline_with_another_fields_only.json'];
-    }
-
-    /**
-     * @return iterable<array<string>>
-     */
-    public function getDataForTestThrowExceptionWithNotIntValue(): iterable
-    {
-        yield [__DIR__ . '/../../fixtures/baseline/baseline_with_not_int_1.json'];
-        yield [__DIR__ . '/../../fixtures/baseline/baseline_with_not_int_2.json'];
-        yield [__DIR__ . '/../../fixtures/baseline/baseline_with_not_int_3.json'];
-        yield [__DIR__ . '/../../fixtures/baseline/baseline_with_not_int_4.json'];
     }
 }

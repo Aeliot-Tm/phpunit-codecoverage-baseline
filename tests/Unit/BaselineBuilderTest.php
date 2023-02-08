@@ -5,15 +5,15 @@ declare(strict_types=1);
 namespace Aeliot\PHPUnitCodeCoverageBaseline\Test\Unit;
 
 use Aeliot\PHPUnitCodeCoverageBaseline\BaselineBuilder;
+use Aeliot\PHPUnitCodeCoverageBaseline\Model\Coverage;
 use Aeliot\PHPUnitCodeCoverageBaseline\Reader\CloverReader;
 use Aeliot\PHPUnitCodeCoverageBaseline\Writer\BaselineWriter;
-use PHPUnit\Framework\TestCase;
 
-final class BaselineBuilderTest extends TestCase
+final class BaselineBuilderTest extends UnitTestCase
 {
     public function testPositiveFlow(): void
     {
-        $data = ['a' => 1, 'b' => 2];
+        $data = new Coverage(['a' => 10.0, 'b' => 20.0]);
 
         $baselineWriter = $this->createMock(BaselineWriter::class);
         $baselineWriter->expects(self::once())->method('write')->with($data);

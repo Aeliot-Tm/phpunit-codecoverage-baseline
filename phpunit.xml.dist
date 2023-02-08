@@ -22,7 +22,7 @@
         </include>
 
         <report>
-            <html outputDirectory="build/coverage"/>
+            <html outputDirectory="build/coverage/html"/>
             <clover outputFile="build/coverage/clover.xml"/>
             <crap4j outputFile="build/coverage/crap4j.xml" threshold="50"/>
         </report>
@@ -35,7 +35,7 @@
         </whitelist>
     </filter>
     <logging>
-        <log type="coverage-html" target="build/coverage"/>
+        <log type="coverage-html" target="build/coverage/html"/>
         <log type="coverage-clover" target="build/coverage/clover.xml"/>
     </logging>
     <!-- <<<: Code coverage report for old versions of PHPUnit -->

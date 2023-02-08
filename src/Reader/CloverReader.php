@@ -5,6 +5,8 @@ declare(strict_types=1);
 namespace Aeliot\PHPUnitCodeCoverageBaseline\Reader;
 
 use Aeliot\PHPUnitCodeCoverageBaseline\Enum\SupportedType;
+use Aeliot\PHPUnitCodeCoverageBaseline\Model\CloverCoverage;
+use Aeliot\PHPUnitCodeCoverageBaseline\Model\Coverage;
 
 final class CloverReader
 {
@@ -19,24 +21,14 @@ final class CloverReader
     }
 
     /**
-     * @return array<string,int>
+     * @return Coverage<string,float>
      */
-    public function read(): array
+    public function read(): Coverage
     {
         $attributes = $this->getAttributes();
+        $data = $this->transformAttributes($attributes);
 
-        $data = [];
-        foreach (SupportedType::getSupportedKeys() as $key) {
-            if(isset($attributes[$key])) {
-                $data[$key] = (int) (string) $attributes[$key];
-            }
-        }
-
-        if (!$data) {
-            throw new \RuntimeException('Empty clover data');
-        }
-
-        return $data;
+        return new Coverage((new CloverCoverage($data))->getPercentage());
     }
 
     private function getAttributes(): \SimpleXMLElement
@@ -67,5 +59,26 @@ final class CloverReader
         }
 
         return $clover;
+    }
+
+    /**
+     * @param \SimpleXMLElement $attributes
+     *
+     * @return array<string,int>
+     */
+    private function transformAttributes(\SimpleXMLElement $attributes): array
+    {
+        $data = [];
+        foreach (SupportedType::getSupportedKeys() as $key) {
+            if (isset($attributes[$key])) {
+                $data[$key] = (int) (string) $attributes[$key];
+            }
+        }
+
+        if (!$data) {
+            throw new \RuntimeException('Empty clover data');
+        }
+
+        return $data;
     }
 }

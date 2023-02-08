@@ -4,16 +4,19 @@ declare(strict_types=1);
 
 namespace Aeliot\PHPUnitCodeCoverageBaseline\Command;
 
+use Aeliot\PHPUnitCodeCoverageBaseline\BaselineReaderFactory;
 use Aeliot\PHPUnitCodeCoverageBaseline\Comparator;
 use Aeliot\PHPUnitCodeCoverageBaseline\CloverInputOptionsAssigner;
 use Aeliot\PHPUnitCodeCoverageBaseline\Model\ComparingRow;
 use Aeliot\PHPUnitCodeCoverageBaseline\Model\ConsoleTable;
-use Aeliot\PHPUnitCodeCoverageBaseline\Reader\BaselineReader;
 use Aeliot\PHPUnitCodeCoverageBaseline\Reader\CloverReader;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
+/**
+ * @codeCoverageIgnore
+ */
 final class CloverCompareCommand extends Command
 {
     public function __construct()
@@ -31,7 +34,7 @@ final class CloverCompareCommand extends Command
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $comparator = new Comparator(
-            new BaselineReader($input->getOption('baseline')),
+            (new BaselineReaderFactory())->createReader($input->getOption('baseline')),
             new CloverReader($input->getOption('clover'))
         );
 

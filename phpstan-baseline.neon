@@ -1,14 +1,14 @@
 parameters:
 	ignoreErrors:
 		-
-			message: "#^Method Aeliot\\\\PHPUnitCodeCoverageBaseline\\\\Enum\\\\SupportedType\\:\\:getCoveredTypes\\(\\) should return array\\<string, string\\> but returns array\\<string, string\\>\\|false\\.$#"
-			count: 1
-			path: src/Enum/SupportedType.php
-
-		-
 			message: "#^Return type of call to method PHPUnit\\\\Framework\\\\TestCase\\:\\:createMock\\(\\) contains unresolvable type\\.$#"
 			count: 2
 			path: tests/Unit/BaselineBuilderTest.php
+
+		-
+			message: "#^Return type of call to method PHPUnit\\\\Framework\\\\TestCase\\:\\:createMock\\(\\) contains unresolvable type\\.$#"
+			count: 4
+			path: tests/Unit/BaselineTransformer/AwareTransformerTest.php
 
 		-
 			message: "#^Return type of call to method PHPUnit\\\\Framework\\\\TestCase\\:\\:createMock\\(\\) contains unresolvable type\\.$#"
@@ -18,12 +18,17 @@ parameters:
 		-
 			message: "#^Return type of call to method PHPUnit\\\\Framework\\\\TestCase\\:\\:createMock\\(\\) contains unresolvable type\\.$#"
 			count: 1
-			path: tests/Unit/Console/OptionsReaderTest.php
+			path: tests/Unit/Model/ConsoleTableTest.php
+
+		-
+			message: "#^Expression \"\\$coverage\\['any_key'\\]\" on a separate line does not do anything\\.$#"
+			count: 2
+			path: tests/Unit/Model/CoverageTest.php
 
 		-
 			message: "#^Return type of call to method PHPUnit\\\\Framework\\\\TestCase\\:\\:createMock\\(\\) contains unresolvable type\\.$#"
-			count: 1
-			path: tests/Unit/Model/ConsoleTableTest.php
+			count: 2
+			path: tests/Unit/Reader/BaselineTransformingReaderTest.php
 
 		-
 			message: "#^Call to an undefined static method PHPUnit\\\\Framework\\\\TestCase\\:\\:expectExceptionMessageMatches\\(\\)\\.$#"
@@ -39,4 +44,9 @@ parameters:
 			message: "#^Call to an undefined static method PHPUnit\\\\Framework\\\\TestCase\\:\\:expectWarningMessageMatches\\(\\)\\.$#"
 			count: 1
 			path: tests/Unit/UnitTestCase.php
+
+		-
+			message: "#^Parameter \\#1 \\$json of function json_decode expects string, string\\|false given\\.$#"
+			count: 1
+			path: tests/Unit/Writer/BaselineWriterTest.php
 

@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace Aeliot\PHPUnitCodeCoverageBaseline\Test\Unit\Model;
 
 use Aeliot\PHPUnitCodeCoverageBaseline\Model\ComparingRow;
-use PHPUnit\Framework\TestCase;
+use Aeliot\PHPUnitCodeCoverageBaseline\Test\Unit\UnitTestCase;
 
-final class ComparingRowTest extends TestCase
+final class ComparingRowTest extends UnitTestCase
 {
     public function testContainingOfProgress(): void
     {
