@@ -32,6 +32,9 @@ final class CloverCoverageTest extends UnitTestCase
         (new CloverCoverage($data))->getPercentage();
     }
 
+    /**
+     * @return iterable<array<array<string,mixed>>>
+     */
     public function getDataForTestPercentage(): iterable
     {
         yield 'covered 0% on zero types' => [
@@ -140,6 +143,9 @@ final class CloverCoverageTest extends UnitTestCase
         ];
     }
 
+    /**
+     * @return iterable<array<array<string,mixed>>>
+     */
     public function getDataForTestThrowsExceptionOnMissedTypesAndPresentedCoveredPair(): iterable
     {
         yield [

@@ -13,7 +13,7 @@ final class V2P0TransformerTest extends UnitTestCase
      * @dataProvider getDataForTestPositiveFlow
      *
      * @param array<string,float> $expected
-     * @param array<string,int|string|array<array,float>> $data
+     * @param array<string,mixed> $data
      */
     public function testPositiveFlow(array $expected, array $data): void
     {
@@ -23,7 +23,7 @@ final class V2P0TransformerTest extends UnitTestCase
     /**
      * @dataProvider getDataForTestThrowExceptionWithInvalidOrMissedOptions
      *
-     * @param array<string,int|string|array<array,float>> $data
+     * @param array<string,mixed> $data
      */
     public function testThrowExceptionWithInvalidOrMissedOptions(array $data): void
     {
@@ -33,6 +33,9 @@ final class V2P0TransformerTest extends UnitTestCase
         (new V2P0Transformer())->transform($data);
     }
 
+    /**
+     * @return iterable<array<array<string,mixed>>>
+     */
     public function getDataForTestPositiveFlow(): iterable
     {
         yield [
@@ -94,7 +97,7 @@ final class V2P0TransformerTest extends UnitTestCase
     }
 
     /**
-     * @return iterable<array<string,mixed>>
+     * @return iterable<array<array<string,mixed>>>
      */
     public function getDataForTestThrowExceptionWithInvalidOrMissedOptions(): iterable
     {

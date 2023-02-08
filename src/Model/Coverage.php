@@ -4,6 +4,10 @@ declare(strict_types=1);
 
 namespace Aeliot\PHPUnitCodeCoverageBaseline\Model;
 
+/**
+ * @implements \ArrayAccess<string,float>
+ * @implements \IteratorAggregate<string,float>
+ */
 final class Coverage implements \ArrayAccess, \IteratorAggregate
 {
     /**
@@ -12,7 +16,7 @@ final class Coverage implements \ArrayAccess, \IteratorAggregate
     private $options = [];
 
     /**
-     * @param array<string,float|string> $options
+     * @param array<string,numeric> $options
      */
     public function __construct(array $options)
     {
@@ -21,16 +25,25 @@ final class Coverage implements \ArrayAccess, \IteratorAggregate
         }
     }
 
+    /**
+     * @return \ArrayIterator<string,float>
+     */
     public function getIterator(): \ArrayIterator
     {
         return new \ArrayIterator($this->options);
     }
 
+    /**
+     * @param string $offset
+     */
     public function offsetExists($offset): bool
     {
         return isset($this->options[$offset]);
     }
 
+    /**
+     * @param string $offset
+     */
     public function offsetGet($offset): float
     {
         if (!isset($this->options[$offset])) {
@@ -40,6 +53,10 @@ final class Coverage implements \ArrayAccess, \IteratorAggregate
         return $this->options[$offset];
     }
 
+    /**
+     * @param string $offset
+     * @param numeric $value
+     */
     public function offsetSet($offset, $value): void
     {
         if (is_numeric($value)) {
@@ -52,6 +69,9 @@ final class Coverage implements \ArrayAccess, \IteratorAggregate
         $this->options[$offset] = $value;
     }
 
+    /**
+     * @param string $offset
+     */
     public function offsetUnset($offset): void
     {
         unset($this->options[$offset]);

@@ -22,6 +22,11 @@ final class AwareTransformer implements TransformerInterface
         $this->transformers = $transformers;
     }
 
+    /**
+     * @param array<string,mixed> $data
+     *
+     * @return Coverage<string,float>
+     */
     public function transform(array $data): Coverage
     {
         $version = $data['version'] ?? Version::VERSION_1;

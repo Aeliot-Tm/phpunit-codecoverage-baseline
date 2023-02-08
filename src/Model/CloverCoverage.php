@@ -35,6 +35,11 @@ final class CloverCoverage
         return $percentage;
     }
 
+    /**
+     * @param array<string,mixed> $data
+     *
+     * @return string[]
+     */
     private function detectCoverageParameters(array $data): array
     {
         $keys = array_keys($data);

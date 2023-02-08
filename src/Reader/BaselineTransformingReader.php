@@ -24,6 +24,9 @@ final class BaselineTransformingReader implements BaselineReaderInterface
         $this->transformer = $transformer;
     }
 
+    /**
+     * @return Coverage<string,float>
+     */
     public function read(): Coverage
     {
         return $this->transformer->transform($this->baselineReader->read());

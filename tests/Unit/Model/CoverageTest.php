@@ -31,7 +31,7 @@ final class CoverageTest extends UnitTestCase
     /**
      * @dataProvider getDataForTestAcceptingOfNumericValue
      *
-     * @param array<int|string,mixed> $data
+     * @param array<string,numeric> $data
      */
     public function testAcceptingOfNumericValue(array $data): void
     {
@@ -45,7 +45,7 @@ final class CoverageTest extends UnitTestCase
     /**
      * @dataProvider getDataForTestThrowExceptionOnNotNumericValue
      *
-     * @param array<int|string,mixed> $data
+     * @param array<string,numeric> $data
      */
     public function testThrowExceptionOnNotNumericValue(array $data): void
     {
@@ -71,7 +71,9 @@ final class CoverageTest extends UnitTestCase
     {
         $this->expectException(\OutOfBoundsException::class);
         $this->expectExceptionMessage('Invalid offset any_key');
-        (new Coverage([]))['any_key'];
+
+        $coverage = new Coverage([]);
+        $coverage['any_key'];
     }
 
     public function testArrayAssess(): void
@@ -101,6 +103,9 @@ final class CoverageTest extends UnitTestCase
         $coverage['any_key'];
     }
 
+    /**
+     * @return iterable<array<array<string,mixed>>>
+     */
     public function getDataForTestAcceptingOfNumericValue(): iterable
     {
         foreach ($this->getNumericValues() as $value) {
@@ -108,6 +113,9 @@ final class CoverageTest extends UnitTestCase
         }
     }
 
+    /**
+     * @return iterable<array<array<string,mixed>>>
+     */
     public function getDataForTestThrowExceptionOnNotNumericValue(): iterable
     {
         foreach ($this->getNotNumericValues() as $value) {
@@ -115,6 +123,9 @@ final class CoverageTest extends UnitTestCase
         }
     }
 
+    /**
+     * @return array<int,mixed>
+     */
     public function getNumericValues(): array
     {
         return [
@@ -125,6 +136,9 @@ final class CoverageTest extends UnitTestCase
         ];
     }
 
+    /**
+     * @return array<int,mixed>
+     */
     public function getNotNumericValues(): iterable
     {
         return [

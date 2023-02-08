@@ -15,8 +15,8 @@ final class AwareTransformerTest extends UnitTestCase
     /**
      * @dataProvider getDataForTestPositiveFlow
      *
-     * @param array $expected
-     * @param array $data
+     * @param array<string,mixed> $expected
+     * @param array<string,mixed> $data
      */
     public function testPositiveFlow(array $expected, array $data): void
     {
@@ -66,7 +66,7 @@ final class AwareTransformerTest extends UnitTestCase
     }
 
     /**
-     * @return iterable<int,array<string|float>|array<string,int|string|array<array,float>>>
+     * @return iterable<int,array<string|mixed>>
      */
     public function getDataForTestPositiveFlow(): iterable
     {
@@ -151,7 +151,7 @@ final class AwareTransformerTest extends UnitTestCase
     }
 
     /**
-     * @return iterable<array<string,int>>
+     * @return iterable<array<array<string,int>>>
      */
     public function getDataForTestDetectedFirstVersion(): iterable
     {
@@ -175,7 +175,7 @@ final class AwareTransformerTest extends UnitTestCase
     }
 
     /**
-     * @return iterable<array<string,mixed>>
+     * @return iterable<array<array<string,mixed>>>
      */
     public function getDataForTestDetectedSecondVersion(): iterable
     {

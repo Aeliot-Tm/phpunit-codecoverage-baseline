@@ -20,6 +20,9 @@ final class CloverReader
         $this->path = $path;
     }
 
+    /**
+     * @return Coverage<string,float>
+     */
     public function read(): Coverage
     {
         $attributes = $this->getAttributes();

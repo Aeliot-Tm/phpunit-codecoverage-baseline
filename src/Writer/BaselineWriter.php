@@ -19,6 +19,9 @@ final class BaselineWriter
         $this->path = $path;
     }
 
+    /**
+     * @param Coverage<string,float> $baseline
+     */
     public function write(Coverage $baseline): void
     {
         $data = [

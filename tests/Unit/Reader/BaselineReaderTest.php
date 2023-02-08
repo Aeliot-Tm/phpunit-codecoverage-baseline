@@ -53,7 +53,7 @@ final class BaselineReaderTest extends UnitTestCase
     }
 
     /**
-     * @return iterable<array{ 0: array<string,int>, 1: string }>
+     * @return iterable<array{ 0: array<string,mixed>, 1: string }>
      */
     public function getDataForTestPositiveFlow(): iterable
     {
