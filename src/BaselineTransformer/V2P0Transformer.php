@@ -10,10 +10,10 @@ final class V2P0Transformer implements TransformerInterface
 {
     public function transform(array $data): Coverage
     {
-        if (!isset($data['options']) || !is_array($data['options'])) {
-            throw new \InvalidArgumentException('Data does not contain valid "options" part');
+        if (!isset($data['metrics']) || !is_array($data['metrics'])) {
+            throw new \InvalidArgumentException('Data does not contain valid "metrics" part');
         }
 
-        return new Coverage($data['options']);
+        return new Coverage($data['metrics']);
     }
 }

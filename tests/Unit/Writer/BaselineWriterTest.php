@@ -19,7 +19,7 @@ final class BaselineWriterTest extends UnitTestCase
         self::assertFileExists($path);
 
         $data = json_decode(file_get_contents($path), true);
-        $expected = ['version' => Version::CURRENT, 'options' => ['a' => 1]];
+        $expected = ['version' => Version::CURRENT, 'metrics' => ['a' => 1]];
         self::assertSame($expected, $data);
     }
 }

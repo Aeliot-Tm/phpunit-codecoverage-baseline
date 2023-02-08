@@ -128,7 +128,7 @@ final class BaselineReaderTest extends UnitTestCase
         yield [
             [
                 'version' => '2.0',
-                'options' => [
+                'metrics' => [
                     'methods' => 1.0,
                     'conditionals' => 30.0,
                     'statements' => 50.0,

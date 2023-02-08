@@ -13,15 +13,15 @@ final class Coverage implements \ArrayAccess, \IteratorAggregate
     /**
      * @var array<string,float>
      */
-    private $options = [];
+    private $metrics = [];
 
     /**
-     * @param array<string,numeric> $options
+     * @param array<string,numeric> $metrics
      */
-    public function __construct(array $options)
+    public function __construct(array $metrics)
     {
-        foreach ($options as $option => $value) {
-            $this->offsetSet($option, $value);
+        foreach ($metrics as $metric => $value) {
+            $this->offsetSet($metric, $value);
         }
     }
 
@@ -30,7 +30,7 @@ final class Coverage implements \ArrayAccess, \IteratorAggregate
      */
     public function getIterator(): \ArrayIterator
     {
-        return new \ArrayIterator($this->options);
+        return new \ArrayIterator($this->metrics);
     }
 
     /**
@@ -38,7 +38,7 @@ final class Coverage implements \ArrayAccess, \IteratorAggregate
      */
     public function offsetExists($offset): bool
     {
-        return isset($this->options[$offset]);
+        return isset($this->metrics[$offset]);
     }
 
     /**
@@ -46,11 +46,11 @@ final class Coverage implements \ArrayAccess, \IteratorAggregate
      */
     public function offsetGet($offset): float
     {
-        if (!isset($this->options[$offset])) {
+        if (!isset($this->metrics[$offset])) {
             throw new \OutOfBoundsException(sprintf('Invalid offset %s', $offset));
         }
 
-        return $this->options[$offset];
+        return $this->metrics[$offset];
     }
 
     /**
@@ -66,7 +66,7 @@ final class Coverage implements \ArrayAccess, \IteratorAggregate
             throw new \InvalidArgumentException(sprintf('Value of "%s" is not numeric', $offset));
         }
 
-        $this->options[$offset] = $value;
+        $this->metrics[$offset] = $value;
     }
 
     /**
@@ -74,6 +74,6 @@ final class Coverage implements \ArrayAccess, \IteratorAggregate
      */
     public function offsetUnset($offset): void
     {
-        unset($this->options[$offset]);
+        unset($this->metrics[$offset]);
     }
 }

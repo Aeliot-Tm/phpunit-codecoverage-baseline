@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "options": {
+  "metrics": {
     "methods": 16.01,
     "conditionals": 0.00,
     "statements": 29.61,

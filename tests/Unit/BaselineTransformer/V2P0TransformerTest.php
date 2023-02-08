@@ -21,14 +21,14 @@ final class V2P0TransformerTest extends UnitTestCase
     }
 
     /**
-     * @dataProvider getDataForTestThrowExceptionWithInvalidOrMissedOptions
+     * @dataProvider getDataForTestThrowExceptionWithInvalidOrMissedMetrics
      *
      * @param array<string,mixed> $data
      */
-    public function testThrowExceptionWithInvalidOrMissedOptions(array $data): void
+    public function testThrowExceptionWithInvalidOrMissedMetrics(array $data): void
     {
         $this->expectException(\InvalidArgumentException::class);
-        $this->expectExceptionMessage('Data does not contain valid "options" part');
+        $this->expectExceptionMessage('Data does not contain valid "metrics" part');
 
         (new V2P0Transformer())->transform($data);
     }
@@ -45,7 +45,7 @@ final class V2P0TransformerTest extends UnitTestCase
                 'c' => 100.0,
             ],
             [
-                'options' => [
+                'metrics' => [
                     'a' => 50.0,
                     'b' => 0.0,
                     'c' => 100.0,
@@ -61,7 +61,7 @@ final class V2P0TransformerTest extends UnitTestCase
                 'elements' => 100.0,
             ],
             [
-                'options' => [
+                'metrics' => [
                     'methods' => 50.0,
                     'conditionals' => 0.0,
                     'statements' => 100.0,
@@ -82,7 +82,7 @@ final class V2P0TransformerTest extends UnitTestCase
                 'coveredelements' => 2.0,
             ],
             [
-                'options' => [
+                'metrics' => [
                     'methods' => 2,
                     'coveredmethods' => 1,
                     'conditionals' => 2,
@@ -99,7 +99,7 @@ final class V2P0TransformerTest extends UnitTestCase
     /**
      * @return iterable<array<array<string,mixed>>>
      */
-    public function getDataForTestThrowExceptionWithInvalidOrMissedOptions(): iterable
+    public function getDataForTestThrowExceptionWithInvalidOrMissedMetrics(): iterable
     {
         yield [[]];
         yield [[
