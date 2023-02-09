@@ -15,6 +15,10 @@ Build baseline for Clover report
 
 Resulting file contains the same options as Clover report. See [example](phpunit.clover.baseline.json).
 
+Baseline v2 contains calculated metrics of code coverage. 
+
+Baseline v1 contained metrics values identical as they represented in Clover report (exact amount of detected and covered classes, methods and so on).
+
 **Notes:**
 1. You can remove some metrics from resulting file. Then they will be counted as not covered.
 2. All not standard metrics added manually will be ignored during comparing of Clover report with the baseline.
