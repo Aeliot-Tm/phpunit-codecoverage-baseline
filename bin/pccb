@@ -4,18 +4,16 @@
 declare(strict_types=1);
 
 use Aeliot\PHPUnitCodeCoverageBaseline\Command\CloverBuildBaselineCommand;
+use Aeliot\PHPUnitCodeCoverageBaseline\Command\CloverCompareCommand;
 use Aeliot\PHPUnitCodeCoverageBaseline\Enum\Version;
 use Symfony\Component\Console\Application;
 
 require __DIR__ . '/include_autoloader.php';
 
-@trigger_error('[ WARNING ] file "bin/pccb_clover_build_baseline" is deprecated.'
-    . ' Use call "bin/pccb pccb:clover:build-baseline" instead.', \E_USER_DEPRECATED);
-
 try {
     $application = new Application('PCCB', Version::CURRENT);
-    $application->add($command = new CloverBuildBaselineCommand());
-    $application->setDefaultCommand($command->getName(), true);
+    $application->add(new CloverCompareCommand());
+    $application->add(new CloverBuildBaselineCommand());
     $exitCode = $application->run();
 } catch (\Throwable $exception) {
     fwrite(STDERR, sprintf('[ERROR] %s%s', $exception->getMessage(), PHP_EOL));
