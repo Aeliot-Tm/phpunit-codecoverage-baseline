@@ -5,7 +5,7 @@ Compare Clover report with baseline
 2. Run your tests with switched on clover report. See [base readme](./../README.md#usage).
 3. Call console command:
    ```shell
-   vendor/bin/pccb_clover_compare -vv
+   vendor/bin/pccb pccb:clover:compare -vv
    ```
    It accepts options:
 

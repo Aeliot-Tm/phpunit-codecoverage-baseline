@@ -4,7 +4,7 @@ Build baseline for Clover report
 1. Run your tests with switched on clover report. See [base readme](./../README.md#usage).
 2. Call console command:
    ```shell
-   vendor/bin/pccb_clover_build_baseline
+   vendor/bin/pccb pccb:clover:build-baseline
    ```
    It accepts options:
 
