@@ -26,7 +26,7 @@ final class BaselineWriter
     {
         $data = [
             'version' => Version::CURRENT,
-            'options' => iterator_to_array($baseline),
+            'metrics' => iterator_to_array($baseline),
         ];
         $content = json_encode($data, JSON_PRETTY_PRINT);
         if (json_last_error()) {

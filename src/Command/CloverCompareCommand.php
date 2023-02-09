@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace Aeliot\PHPUnitCodeCoverageBaseline\Command;
 
 use Aeliot\PHPUnitCodeCoverageBaseline\BaselineReaderFactory;
-use Aeliot\PHPUnitCodeCoverageBaseline\Comparator;
 use Aeliot\PHPUnitCodeCoverageBaseline\CloverInputOptionsAssigner;
+use Aeliot\PHPUnitCodeCoverageBaseline\Comparator;
 use Aeliot\PHPUnitCodeCoverageBaseline\Model\ComparingRow;
 use Aeliot\PHPUnitCodeCoverageBaseline\Model\ConsoleTable;
 use Aeliot\PHPUnitCodeCoverageBaseline\Reader\CloverReader;
@@ -39,6 +39,13 @@ final class CloverCompareCommand extends Command
         );
 
         $results = $comparator->compare();
+        $exitCode = 0;
+        if ($regressedTypes = $results->getRegressedNames()) {
+            $exitCode = 1;
+            if (!$output->isQuiet()) {
+                $output->writeln(sprintf('[ERROR] There is detected regress of code coverage on types: %s.', implode(', ', $regressedTypes)));
+            }
+        }
 
         if ($output->isVerbose()) {
             $table = $this->createTable();
@@ -48,19 +55,13 @@ final class CloverCompareCommand extends Command
             });
 
             $output->writeln($table->getContent());
+
+            if (!$exitCode && $results->hasImprovement()) {
+                $output->writeln('Good job! You improved code coverage. Update baseline.');
+            }
         }
 
-        if ($regressedTypes = $results->getRegressedNames()) {
-            $output->writeln(sprintf('[ERROR] There is detected regress of code coverage on types: %s.', implode(', ', $regressedTypes)));
-
-            return 1;
-        }
-
-        if ($output->isVerbose() && $results->hasImprovement()) {
-            echo 'Good job! You improved code coverage. Update baseline.' . PHP_EOL;
-        }
-
-        return 0;
+        return $exitCode;
     }
 
     private function createTable(): ConsoleTable

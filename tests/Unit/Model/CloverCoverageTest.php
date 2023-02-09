@@ -93,7 +93,7 @@ final class CloverCoverageTest extends UnitTestCase
             ],
         ];
 
-        yield 'covered 0% on missed "covered.." options' => [
+        yield 'covered 0% on missed "covered.." metrics' => [
             [
                 'methods' => 0.0,
                 'conditionals' => 0.0,
@@ -108,7 +108,7 @@ final class CloverCoverageTest extends UnitTestCase
             ],
         ];
 
-        yield 'missed option "methods" with its "covered.." option' => [
+        yield 'missed metric "methods" with its "covered.." pair metric' => [
             [
                 'conditionals' => 0.0,
                 'statements' => 0.0,
@@ -124,7 +124,7 @@ final class CloverCoverageTest extends UnitTestCase
             ],
         ];
 
-        yield 'missed option "methods" & "conditionals" with their "covered.." options' => [
+        yield 'missed metrics "methods" & "conditionals" with their "covered.." pair metrics' => [
             [
                 'statements' => 0.0,
                 'elements' => 0.0,

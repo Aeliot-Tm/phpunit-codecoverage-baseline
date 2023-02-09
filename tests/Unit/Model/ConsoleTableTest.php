@@ -388,14 +388,12 @@ final class ConsoleTableTest extends UnitTestCase
         yield [
             '|---|' . PHP_EOL .
             '| a |' . PHP_EOL .
-            '|---|' . PHP_EOL .
             '|---|' . PHP_EOL,
             ['a'],
         ];
         yield [
             '|---|---|' . PHP_EOL .
             '| a | b |' . PHP_EOL .
-            '|---|---|' . PHP_EOL .
             '|---|---|' . PHP_EOL,
             ['a', 'b'],
         ];

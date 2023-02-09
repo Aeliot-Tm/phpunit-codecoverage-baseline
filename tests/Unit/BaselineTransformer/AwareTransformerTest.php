@@ -97,7 +97,7 @@ final class AwareTransformerTest extends UnitTestCase
             ],
             [
                 'version' => '2.0',
-                'options' => [
+                'metrics' => [
                     'a' => 50.0,
                     'b' => 0.0,
                     'c' => 100.0,
@@ -114,7 +114,7 @@ final class AwareTransformerTest extends UnitTestCase
             ],
             [
                 'version' => '2.0',
-                'options' => [
+                'metrics' => [
                     'methods' => 50.0,
                     'conditionals' => 0.0,
                     'statements' => 100.0,
@@ -136,7 +136,7 @@ final class AwareTransformerTest extends UnitTestCase
             ],
             [
                 'version' => '2.0',
-                'options' => [
+                'metrics' => [
                     'methods' => 2,
                     'coveredmethods' => 1,
                     'conditionals' => 2,
@@ -182,7 +182,7 @@ final class AwareTransformerTest extends UnitTestCase
         yield [
             [
                 'version' => '2.0',
-                'options' => [
+                'metrics' => [
                     'any_key' => 0.0,
                 ],
             ],

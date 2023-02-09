@@ -18,7 +18,8 @@ Compare Clover report with baseline
 
 ### Report in verbose mode
 
-Add option `--verbose=v` or `-vv` to console command then you will get report:
+Add verbosity option to console command according to [Symfony documentation](https://symfony.com/doc/current/console/verbosity.html) since "verbose" level. 
+Then you will get report:
 ```
 Clover baseline comparing results:
 |--------------|--------------|--------------|-----------|

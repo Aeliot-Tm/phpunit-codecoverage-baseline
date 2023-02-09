@@ -82,7 +82,9 @@ final class ConsoleTable
         foreach ($this->values as $values) {
             $content[] = $this->buildTableLine($values);
         }
-        $content[] = $this->buildSeparateLine();
+        if ($this->values) {
+            $content[] = $this->buildSeparateLine();
+        }
 
         return implode(PHP_EOL, $content) . PHP_EOL;
     }
