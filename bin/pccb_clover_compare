@@ -9,7 +9,7 @@ use Symfony\Component\Console\Application;
 
 require __DIR__ . '/include_autoloader.php';
 
-@trigger_error('[ WARNING ] file "bin/pccb_clover_build_baseline" is deprecated.'
+@trigger_error('[ WARNING ] file "bin/pccb_clover_compare" is deprecated.'
     . ' Use call "bin/pccb pccb:clover:compare" instead.', \E_USER_DEPRECATED);
 
 try {
