@@ -25,6 +25,7 @@
   ],
   "config": {
     "allow-plugins": {
+      "ocramius/package-versions": true,
       "phpstan/extension-installer": true
     },
     "sort-packages": true
@@ -40,7 +41,7 @@
     "phpstan/extension-installer": "*",
     "phpstan/phpstan": "*",
     "phpstan/phpstan-phpunit": "*",
-    "phpunit/phpunit": "*,<10.0"
+    "phpunit/phpunit": "^7.5|^9.5"
   },
   "scripts": {
     "test": "vendor/bin/phpunit",
