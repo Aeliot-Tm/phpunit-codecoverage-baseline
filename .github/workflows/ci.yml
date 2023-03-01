@@ -37,13 +37,11 @@ jobs:
 
             - uses: actions/checkout@v3
 
-            - name: Set versions
-              run: |
-                  sed -i 's/\^3.4|\^4.0|\^5.0|\^6.0/${{ matrix.symfony-version }}/g' composer.json
-                  sed -i 's/\^7.5|\^9.5/${{ matrix.phpunit-version }}/g' composer.json
-
             - name: Validate composer.json and composer.lock
               run: composer validate --strict
+
+            - name: Set versions
+              run: composer run-script set_versions ${{ matrix.symfony-version }} ${{ matrix.phpunit-version }}
 
             - name: Cache Composer packages
               id: composer-cache

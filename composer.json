@@ -50,7 +50,8 @@
     ],
     "phpunit": "vendor/bin/phpunit",
     "phpstan-analise": "vendor/bin/phpstan analyse",
-    "phpstan-update": "vendor/bin/phpstan analyse  --generate-baseline phpstan-baseline.neon"
+    "phpstan-update": "vendor/bin/phpstan analyse  --generate-baseline phpstan-baseline.neon",
+    "set_versions": "sh bin/dev/set_composer_versions"
   },
   "suggest": {
     "phpunit/phpunit": "PHPUnit must be used to generate code coverage report."

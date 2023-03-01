@@ -1,0 +1,9 @@
+#!/bin/sh
+
+set -e
+
+SYMFONY_NEW_VERSION=$1
+PHPUNIT_NEW_VERSION=$2
+
+sed -i "s/\^3.4|\^4.0|\^5.0|\^6.0/${SYMFONY_NEW_VERSION}/g" composer.json
+sed -i "s/\^7.5|\^9.5/${PHPUNIT_NEW_VERSION}/g" composer.json
