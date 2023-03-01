@@ -7,6 +7,7 @@ CHANGELOG
   * Fix comparing and displaying of data used for comparing of Clover code coverage report with its baseline.
 * Minors:
   * Configure matrix for better dependencies testing.
+  * Update scripts in composer config and running of them on GitGub Actions. 
 
 2.0.0
 -----

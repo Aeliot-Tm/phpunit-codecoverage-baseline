@@ -44,8 +44,13 @@
     "phpunit/phpunit": "^7.5|^9.5"
   },
   "scripts": {
-    "test": "vendor/bin/phpunit",
-    "phpstan-analise": "vendor/bin/phpstan analyse"
+    "test": [
+      "@phpunit",
+      "@phpstan-analise"
+    ],
+    "phpunit": "vendor/bin/phpunit",
+    "phpstan-analise": "vendor/bin/phpstan analyse",
+    "phpstan-update": "vendor/bin/phpstan analyse  --generate-baseline phpstan-baseline.neon"
   },
   "suggest": {
     "phpunit/phpunit": "PHPUnit must be used to generate code coverage report."
