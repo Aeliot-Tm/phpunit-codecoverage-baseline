@@ -10,7 +10,8 @@ final class CloverCompareCommandTest extends FunctionalTestCase
 {
     public function testPositiveFlow(): void
     {
-        $command = 'bin/pccb pccb:clover:compare -vv'
+        $command = 'php ' . __DIR__ . '/../../../bin/pccb'
+            . ' pccb:clover:compare -vv'
             . ' -b tests/fixtures/baseline/baseline_v2.json'
             . ' -c tests/fixtures/clover/clover.xml';
         exec($command, $output, $resultCode);
