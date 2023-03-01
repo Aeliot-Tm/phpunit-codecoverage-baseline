@@ -52,8 +52,8 @@ final class ComparingRowTest extends UnitTestCase
         yield 'no changes' => [
             [
                 'name' => 'any string',
-                'old' => ' 10.00 %',
-                'new' => ' 10.00 %',
+                'old' => '  0.10 %',
+                'new' => '  0.10 %',
                 'progress' => '   0.00 %',
             ],
             0.1,
@@ -68,7 +68,7 @@ final class ComparingRowTest extends UnitTestCase
                 'progress' => '+100.00 %',
             ],
             0.0,
-            1.0,
+            100.0,
         ];
 
         yield '-100 %' => [
@@ -78,7 +78,7 @@ final class ComparingRowTest extends UnitTestCase
                 'new' => '  0.00 %',
                 'progress' => '-100.00 %',
             ],
-            1.0,
+            100.0,
             0.0,
         ];
 
@@ -89,8 +89,8 @@ final class ComparingRowTest extends UnitTestCase
                 'new' => '  0.10 %',
                 'progress' => '  +0.09 %',
             ],
-            0.0001,
-            0.001,
+            0.01,
+            0.1,
         ];
 
         yield 'not showable difference' => [
@@ -100,8 +100,8 @@ final class ComparingRowTest extends UnitTestCase
                 'new' => '  0.01 %',
                 'progress' => '  +0.01 %',
             ],
-            0.00001,
-            0.0001,
+            0.001,
+            0.01,
         ];
     }
 }

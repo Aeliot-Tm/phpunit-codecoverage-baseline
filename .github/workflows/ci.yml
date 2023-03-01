@@ -37,28 +37,17 @@ jobs:
 
             - uses: actions/checkout@v3
 
-            - name: Set versions
-              run: |
-                  sed -i 's/\^3.4|\^4.0|\^5.0|\^6.0/${{ matrix.symfony-version }}/g' composer.json
-                  sed -i 's/\^7.5|\^9.5/${{ matrix.phpunit-version }}/g' composer.json
-
             - name: Validate composer.json and composer.lock
               run: composer validate --strict
 
-            - name: Cache Composer packages
-              id: composer-cache
-              uses: actions/cache@v3
-              with:
-                  path: vendor
-                  key: ${{ runner.os }}-php-${{ hashFiles('**/composer.lock') }}
-                  restore-keys: |
-                      ${{ runner.os }}-php-
+            - name: Set versions
+              run: composer run-script set_versions ${{ matrix.symfony-version }} ${{ matrix.phpunit-version }}
 
             - name: Install dependencies
               uses: ramsey/composer-install@v2
 
             - name: Run test suite
-              run: composer run-script test
+              run: composer run-script phpunit
 
     phpstan:
         runs-on: ubuntu-latest
@@ -69,17 +58,8 @@ jobs:
 
             - uses: actions/checkout@v3
 
-            - name: Cache Composer packages
-              id: composer-cache
-              uses: actions/cache@v3
-              with:
-                  path: vendor
-                  key: ${{ runner.os }}-php-${{ hashFiles('**/composer.lock') }}
-                  restore-keys: |
-                      ${{ runner.os }}-php-
-
             - name: Install dependencies
               uses: ramsey/composer-install@v2
 
             - name: PHPStan analyse
-              run: vendor/bin/phpstan analyse
+              run: composer run-script phpstan-analise

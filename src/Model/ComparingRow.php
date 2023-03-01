@@ -29,8 +29,8 @@ final class ComparingRow
     public function __construct(string $name, float $old, float $new)
     {
         $this->name = $name;
-        $this->old = round($old * 100, 2);
-        $this->new = round($new * 100, 2);
+        $this->old = round($old, 2);
+        $this->new = round($new, 2);
         $this->progress = $this->new - $this->old;
     }
 
@@ -58,9 +58,14 @@ final class ComparingRow
 
         return [
             'name' => $this->name,
-            'old' => str_pad(number_format($this->old, 2), 6, ' ', \STR_PAD_LEFT) . ' %',
-            'new' => str_pad(number_format($this->new, 2), 6, ' ', \STR_PAD_LEFT) . ' %',
-            'progress' => str_pad($progressPrefix . number_format($this->progress, 2), 7, ' ', \STR_PAD_LEFT) . ' %',
+            'old' => $this->formatPercentage($this->old, 6),
+            'new' => $this->formatPercentage($this->new, 6),
+            'progress' => $this->formatPercentage($this->progress, 7, $progressPrefix),
         ];
+    }
+
+    private function formatPercentage(float $value, int $length, string $prefix = ''): string
+    {
+        return str_pad($prefix . number_format($value, 2, '.', ''), $length, ' ', \STR_PAD_LEFT) . ' %';
     }
 }
