@@ -59,14 +59,14 @@ final class BaselineReaderTest extends UnitTestCase
     {
         yield [
             [
-                'methods' => 1,
-                'conditionals' => 3,
-                'statements' => 5,
-                'elements' => 7,
-                'coveredmethods' => 2,
-                'coveredconditionals' => 4,
-                'coveredstatements' => 6,
-                'coveredelements' => 8,
+                'methods' => 2,
+                'conditionals' => 4,
+                'statements' => 6,
+                'elements' => 8,
+                'coveredmethods' => 1,
+                'coveredconditionals' => 3,
+                'coveredstatements' => 5,
+                'coveredelements' => 7,
             ],
             __DIR__ . '/../../fixtures/baseline/baseline.json',
         ];
