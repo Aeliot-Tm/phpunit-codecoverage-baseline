@@ -35,7 +35,7 @@ jobs:
               with:
                   php-version: "${{ matrix.php-version }}"
 
-            - uses: actions/checkout@v3
+            - uses: actions/checkout@v4
 
             - name: Validate composer.json and composer.lock
               run: composer validate --strict
@@ -44,7 +44,7 @@ jobs:
               run: composer run-script set_versions ${{ matrix.symfony-version }} ${{ matrix.phpunit-version }}
 
             - name: Install dependencies
-              uses: ramsey/composer-install@v2
+              uses: ramsey/composer-install@v3
 
             - name: Run test suite
               run: composer run-script phpunit
@@ -56,10 +56,10 @@ jobs:
               with:
                   php-version: "7.4"
 
-            - uses: actions/checkout@v3
+            - uses: actions/checkout@v4
 
             - name: Install dependencies
-              uses: ramsey/composer-install@v2
+              uses: ramsey/composer-install@v3
 
             - name: PHPStan analyse
               run: composer run-script phpstan-analise
