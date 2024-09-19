@@ -7,6 +7,7 @@ namespace Aeliot\PHPUnitCodeCoverageBaseline\Command;
 use Aeliot\PHPUnitCodeCoverageBaseline\BaselineReaderFactory;
 use Aeliot\PHPUnitCodeCoverageBaseline\CloverInputOptionsAssigner;
 use Aeliot\PHPUnitCodeCoverageBaseline\Comparator;
+use Aeliot\PHPUnitCodeCoverageBaseline\Enum\Command as CommandEnum;
 use Aeliot\PHPUnitCodeCoverageBaseline\Model\ComparingRow;
 use Aeliot\PHPUnitCodeCoverageBaseline\Model\ConsoleTable;
 use Aeliot\PHPUnitCodeCoverageBaseline\Reader\CloverReader;
@@ -21,7 +22,7 @@ final class CloverCompareCommand extends Command
 {
     public function __construct()
     {
-        parent::__construct('pccb:clover:compare');
+        parent::__construct(CommandEnum::CLOVER_COMPARE);
     }
 
     protected function configure(): void
@@ -29,6 +30,7 @@ final class CloverCompareCommand extends Command
         $definition = $this->getDefinition();
         CloverInputOptionsAssigner::addBaselineOption($definition);
         CloverInputOptionsAssigner::addCloverOption($definition);
+        CloverInputOptionsAssigner::addPrecisionOption($definition);
     }
 
     protected function execute(InputInterface $input, OutputInterface $output): int

@@ -33,4 +33,15 @@ final class CloverInputOptionsAssigner
             'build/coverage/clover.xml'
         ));
     }
+
+    public static function addPrecisionOption(InputDefinition $definition): void
+    {
+        $definition->addOption(new InputOption(
+            'precision',
+            'p',
+            InputOption::VALUE_REQUIRED,
+            'Precision of calculations',
+            2
+        ));
+    }
 }

@@ -3,19 +3,20 @@
 
 declare(strict_types=1);
 
-use Aeliot\PHPUnitCodeCoverageBaseline\Command\CloverCompareCommand;
+use Aeliot\PHPUnitCodeCoverageBaseline\CommandLoader;
+use Aeliot\PHPUnitCodeCoverageBaseline\Enum\Command as CommandEnum;
 use Aeliot\PHPUnitCodeCoverageBaseline\Enum\Version;
 use Symfony\Component\Console\Application;
 
 require __DIR__ . '/include_autoloader.php';
 
-@trigger_error('[ WARNING ] file "bin/pccb_clover_compare" is deprecated.'
+@trigger_error('[ DEPRECATION ] file "bin/pccb_clover_compare" is deprecated.'
     . ' Use call "bin/pccb pccb:clover:compare" instead.', \E_USER_DEPRECATED);
 
 try {
     $application = new Application('PCCB', Version::CURRENT);
-    $application->add($command = new CloverCompareCommand());
-    $application->setDefaultCommand($command->getName(), true);
+    $application->setCommandLoader(new CommandLoader());
+    $application->setDefaultCommand(CommandEnum::CLOVER_COMPARE, true);
     $exitCode = $application->run();
 } catch (\Throwable $exception) {
     fwrite(STDERR, sprintf('[ERROR] %s%s', $exception->getMessage(), PHP_EOL));

@@ -3,8 +3,7 @@
 
 declare(strict_types=1);
 
-use Aeliot\PHPUnitCodeCoverageBaseline\Command\CloverBuildBaselineCommand;
-use Aeliot\PHPUnitCodeCoverageBaseline\Command\CloverCompareCommand;
+use Aeliot\PHPUnitCodeCoverageBaseline\CommandLoader;
 use Aeliot\PHPUnitCodeCoverageBaseline\Enum\Version;
 use Symfony\Component\Console\Application;
 
@@ -12,8 +11,7 @@ require __DIR__ . '/include_autoloader.php';
 
 try {
     $application = new Application('PCCB', Version::CURRENT);
-    $application->add(new CloverCompareCommand());
-    $application->add(new CloverBuildBaselineCommand());
+    $application->setCommandLoader(new CommandLoader());
     $exitCode = $application->run();
 } catch (\Throwable $exception) {
     fwrite(STDERR, sprintf('[ERROR] %s%s', $exception->getMessage(), PHP_EOL));

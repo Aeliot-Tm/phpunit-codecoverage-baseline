@@ -8,7 +8,7 @@ Installation
 
 Call command line script to install: 
 ```shell
-composer require --dev aeliot-tm/phpunit-codecoverage-baseline
+composer require aeliot/doctrine-encrypted-fields
 ```
 
 Usage

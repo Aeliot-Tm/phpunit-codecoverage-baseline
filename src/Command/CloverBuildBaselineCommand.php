@@ -6,6 +6,7 @@ namespace Aeliot\PHPUnitCodeCoverageBaseline\Command;
 
 use Aeliot\PHPUnitCodeCoverageBaseline\BaselineBuilder;
 use Aeliot\PHPUnitCodeCoverageBaseline\CloverInputOptionsAssigner;
+use Aeliot\PHPUnitCodeCoverageBaseline\Enum\Command as CommandEnum;
 use Aeliot\PHPUnitCodeCoverageBaseline\Reader\CloverReader;
 use Aeliot\PHPUnitCodeCoverageBaseline\Writer\BaselineWriter;
 use Symfony\Component\Console\Command\Command;
@@ -19,7 +20,7 @@ final class CloverBuildBaselineCommand extends Command
 {
     public function __construct()
     {
-        parent::__construct('pccb:clover:build-baseline');
+        parent::__construct(CommandEnum::CLOVER_BUILD_BASELINE);
     }
 
     protected function configure(): void
@@ -27,6 +28,7 @@ final class CloverBuildBaselineCommand extends Command
         $definition = $this->getDefinition();
         CloverInputOptionsAssigner::addBaselineOption($definition);
         CloverInputOptionsAssigner::addCloverOption($definition);
+        CloverInputOptionsAssigner::addPrecisionOption($definition);
     }
 
     protected function execute(InputInterface $input, OutputInterface $output): int

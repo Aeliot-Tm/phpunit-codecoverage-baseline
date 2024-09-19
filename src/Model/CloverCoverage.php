@@ -10,13 +10,18 @@ final class CloverCoverage
      * @var array<string,int>
      */
     private $data;
+    /**
+     * @var int
+     */
+    private $percentage;
 
     /**
      * @param array<string,int> $data
      */
-    public function __construct(array $data)
+    public function __construct(array $data, int $percentage)
     {
         $this->data = $data;
+        $this->percentage = $percentage;
     }
 
     /**
