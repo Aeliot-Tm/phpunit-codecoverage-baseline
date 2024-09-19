@@ -1,6 +1,8 @@
 PHPUnit code coverage baseline
 ==============================
 
+[![WFS](https://github.com/Aeliot-Tm/phpunit-codecoverage-baseline/actions/workflows/automated_testing.yml/badge.svg?branch=main)](https://github.com/Aeliot-Tm/phpunit-codecoverage-baseline/actions)
+
 Package implements support of baseline for Clover repost of PHPUnit.
 
 Installation
