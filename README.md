@@ -2,6 +2,7 @@ PHPUnit code coverage baseline
 ==============================
 
 [![WFS](https://github.com/Aeliot-Tm/phpunit-codecoverage-baseline/actions/workflows/automated_testing.yml/badge.svg?branch=main)](https://github.com/Aeliot-Tm/phpunit-codecoverage-baseline/actions)
+[![Code Climate maintainability](https://img.shields.io/codeclimate/maintainability/Aeliot-Tm/phpunit-codecoverage-baseline?label=Maintainability&labelColor=black)](https://codeclimate.com/github/Aeliot-Tm/phpunit-codecoverage-baseline)
 
 Package implements support of baseline for Clover repost of PHPUnit.
 
