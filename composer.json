@@ -48,6 +48,7 @@
       "@phpunit",
       "@phpstan-analise"
     ],
+    "phive-install": "phive install --trust-gpg-keys $(cat .phive/trust-gpg-keys.txt)",
     "phpunit": "vendor/bin/phpunit",
     "phpstan-analise": "vendor/bin/phpstan analyse",
     "phpstan-update": "vendor/bin/phpstan analyse  --generate-baseline phpstan-baseline.neon",
