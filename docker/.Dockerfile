@@ -22,11 +22,11 @@ RUN echo "xdebug.mode=coverage,debug" >> /usr/local/etc/php/conf.d/docker-php-ex
 # Memory limit
 RUN echo "memory_limit = 1G" >> /usr/local/etc/php/php.ini
 
-WORKDIR /app
-
 RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" \
     && php composer-setup.php --filename composer --install-dir=/bin \
     && php -r "unlink('composer-setup.php');"
+
+WORKDIR /app
 
 COPY composer.json composer.json
 RUN composer install --prefer-dist --no-suggest --no-interaction --no-scripts --classmap-authoritative --no-autoloader
