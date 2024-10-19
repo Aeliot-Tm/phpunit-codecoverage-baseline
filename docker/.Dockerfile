@@ -22,11 +22,20 @@ RUN echo "xdebug.mode=coverage,debug" >> /usr/local/etc/php/conf.d/docker-php-ex
 # Memory limit
 RUN echo "memory_limit = 1G" >> /usr/local/etc/php/php.ini
 
-WORKDIR /app
-
 RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" \
     && php composer-setup.php --filename composer --install-dir=/bin \
     && php -r "unlink('composer-setup.php');"
+
+# Install PHIVE
+RUN set -xe; \
+    curl -sSL -o phive.phar https://phar.io/releases/phive.phar && \
+    curl -sSL -o phive.phar.asc https://phar.io/releases/phive.phar.asc && \
+    gpg --keyserver hkps://keys.openpgp.org --recv-keys 0x9D8A98B29B2D5D79 && \
+    gpg --verify phive.phar.asc phive.phar && \
+    chmod +x phive.phar && \
+    mv phive.phar /usr/local/bin/phive
+
+WORKDIR /app
 
 COPY composer.json composer.json
 RUN composer install --prefer-dist --no-suggest --no-interaction --no-scripts --classmap-authoritative --no-autoloader
