@@ -1,62 +1,62 @@
 parameters:
 	ignoreErrors:
 		-
-			message: "#^Return type of call to method PHPUnit\\\\Framework\\\\TestCase\\:\\:createMock\\(\\) contains unresolvable type\\.$#"
+			message: '#^Return type of call to method PHPUnit\\Framework\\TestCase\:\:createMock\(\) contains unresolvable type\.$#'
+			identifier: method.unresolvableReturnType
 			count: 2
 			path: tests/Unit/BaselineBuilderTest.php
 
 		-
-			message: "#^Return type of call to method PHPUnit\\\\Framework\\\\TestCase\\:\\:createMock\\(\\) contains unresolvable type\\.$#"
+			message: '#^Return type of call to method PHPUnit\\Framework\\TestCase\:\:createMock\(\) contains unresolvable type\.$#'
+			identifier: method.unresolvableReturnType
 			count: 4
 			path: tests/Unit/BaselineTransformer/AwareTransformerTest.php
 
 		-
-			message: "#^Return type of call to method PHPUnit\\\\Framework\\\\TestCase\\:\\:createMock\\(\\) contains unresolvable type\\.$#"
+			message: '#^Return type of call to method PHPUnit\\Framework\\TestCase\:\:createMock\(\) contains unresolvable type\.$#'
+			identifier: method.unresolvableReturnType
 			count: 2
 			path: tests/Unit/ComparatorTest.php
 
 		-
-			message: "#^Trying to mock an undefined method read\\(\\) on class \\.$#"
-			count: 2
-			path: tests/Unit/ComparatorTest.php
-
-		-
-			message: "#^Return type of call to method PHPUnit\\\\Framework\\\\TestCase\\:\\:createMock\\(\\) contains unresolvable type\\.$#"
+			message: '#^Return type of call to method PHPUnit\\Framework\\TestCase\:\:createMock\(\) contains unresolvable type\.$#'
+			identifier: method.unresolvableReturnType
 			count: 1
 			path: tests/Unit/Model/ConsoleTableTest.php
 
 		-
-			message: "#^Trying to mock an undefined method getValues\\(\\) on class \\.$#"
-			count: 1
-			path: tests/Unit/Model/ConsoleTableTest.php
-
-		-
-			message: "#^Expression \"\\$coverage\\['any_key'\\]\" on a separate line does not do anything\\.$#"
+			message: '#^Expression "\$coverage\[''any_key''\]" on a separate line does not do anything\.$#'
+			identifier: expr.resultUnused
 			count: 2
 			path: tests/Unit/Model/CoverageTest.php
 
 		-
-			message: "#^Return type of call to method PHPUnit\\\\Framework\\\\TestCase\\:\\:createMock\\(\\) contains unresolvable type\\.$#"
+			message: '#^Return type of call to method PHPUnit\\Framework\\TestCase\:\:createMock\(\) contains unresolvable type\.$#'
+			identifier: method.unresolvableReturnType
 			count: 2
 			path: tests/Unit/Reader/BaselineTransformingReaderTest.php
 
 		-
-			message: "#^Call to an undefined static method PHPUnit\\\\Framework\\\\TestCase\\:\\:expectExceptionMessageMatches\\(\\)\\.$#"
+			message: '#^Call to function method_exists\(\) with ''PHPUnit\\\\Framework\\\\TestCase'' and ''expectExceptionMess…'' will always evaluate to true\.$#'
+			identifier: function.alreadyNarrowedType
 			count: 1
 			path: tests/Unit/UnitTestCase.php
 
 		-
-			message: "#^Call to an undefined static method PHPUnit\\\\Framework\\\\TestCase\\:\\:expectWarning\\(\\)\\.$#"
+			message: '#^Call to function method_exists\(\) with ''PHPUnit\\\\Framework\\\\TestCase'' and ''expectWarning'' will always evaluate to true\.$#'
+			identifier: function.alreadyNarrowedType
 			count: 1
 			path: tests/Unit/UnitTestCase.php
 
 		-
-			message: "#^Call to an undefined static method PHPUnit\\\\Framework\\\\TestCase\\:\\:expectWarningMessageMatches\\(\\)\\.$#"
+			message: '#^Call to function method_exists\(\) with ''PHPUnit\\\\Framework\\\\TestCase'' and ''expectWarningMessag…'' will always evaluate to true\.$#'
+			identifier: function.alreadyNarrowedType
 			count: 1
 			path: tests/Unit/UnitTestCase.php
 
 		-
-			message: "#^Parameter \\#1 \\$json of function json_decode expects string, string\\|false given\\.$#"
+			message: '#^Parameter \#1 \$json of function json_decode expects string, string\|false given\.$#'
+			identifier: argument.type
 			count: 1
 			path: tests/Unit/Writer/BaselineWriterTest.php
 
