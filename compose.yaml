@@ -3,13 +3,13 @@ version: '3.1'
 services:
   php:
     build:
-      dockerfile: ./docker/.Dockerfile
-      context: ./../
+      context: ./
+      dockerfile: .docker/php/Dockerfile
       args:
         PHP_VERSION: ${PHP_VERSION:-php:7.1}
         PHP_XDEBUG_PORT: ${PHP_XDEBUG_PORT:-9003}
         XDEBUG_VERSION: ${XDEBUG_VERSION:-2.9.8}
     restart: on-failure
     volumes:
-      - ./../:/app:delegated
+      - ./:/app:delegated
 
