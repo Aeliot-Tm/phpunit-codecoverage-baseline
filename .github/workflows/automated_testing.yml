@@ -15,20 +15,15 @@ jobs:
             matrix:
                 include:
                     - php-version: '7.1'
-                      symfony-version: '3.4.*'
-                      phpunit-version: '7.5.20'
+                      lock-version: '3.4'
                     - php-version: '7.4'
-                      symfony-version: '4.0.*'
-                      phpunit-version: '9.5.28'
+                      lock-version: '4.4'
                     - php-version: '8.0'
-                      symfony-version: '5.0.*'
-                      phpunit-version: '9.5.28'
+                      lock-version: '5.0'
                     - php-version: '8.1'
-                      symfony-version: '6.0.*'
-                      phpunit-version: '9.5.28'
-                    - php-version: '8.1'
-                      symfony-version: '^6.2'
-                      phpunit-version: '9.5.28'
+                      lock-version: '6.0'
+                    - php-version: '8.2'
+                      lock-version: '7.0'
 
         steps:
             - uses: "shivammathur/setup-php@v2"
@@ -37,11 +32,8 @@ jobs:
 
             - uses: actions/checkout@v4
 
-            - name: Validate composer.json and composer.lock
-              run: composer validate --strict
-
             - name: Set versions
-              run: composer run-script set_versions ${{ matrix.symfony-version }} ${{ matrix.phpunit-version }}
+              run: cp composer.${{ matrix.lock-version }}.lock composer.lock
 
             - name: Install dependencies
               uses: ramsey/composer-install@v3
