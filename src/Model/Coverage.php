@@ -56,6 +56,8 @@ final class Coverage implements \ArrayAccess, \IteratorAggregate
     /**
      * @param string $offset
      * @param numeric $value
+     *
+     * @phpstan-param mixed $value
      */
     public function offsetSet($offset, $value): void
     {
