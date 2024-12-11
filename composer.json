@@ -46,12 +46,20 @@
   "scripts": {
     "test": [
       "@phpunit",
-      "@phpstan-analise"
+      "@phpstan"
     ],
     "phive-install": "phive install --trust-gpg-keys $(cat .phive/trust-gpg-keys.txt)",
     "phpunit": "vendor/bin/phpunit",
-    "phpstan-analise": "vendor/bin/phpstan analyse",
-    "phpstan-update": "vendor/bin/phpstan analyse  --generate-baseline phpstan-baseline.neon",
+    "phpstan": [
+      "@phpstan-clear",
+      "@phpstan-analyse"
+    ],
+    "phpstan-analise": "vendor/bin/phpstan analyse -c scripts/phpstan/config.neon",
+    "phpstan-baseline": [
+      "@phpstan-clear",
+      "@phpstan-analise --generate-baseline phpstan-baseline.neon"
+    ],
+    "phpstan-clear": "vendor/bin/phpstan clear-result-cache -c scripts/phpstan/config.neon",
     "set_versions": "sh bin/dev/set_composer_versions"
   },
   "suggest": {
