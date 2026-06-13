@@ -26,6 +26,10 @@ jobs:
           config: |
             paths:
               in: .
+              append:
+                - bin/pccb
+                - bin/pccb_clover_build_baseline
+                - bin/pccb_clover_compare
               exclude:
                 - tests/fixtures
                 - var
