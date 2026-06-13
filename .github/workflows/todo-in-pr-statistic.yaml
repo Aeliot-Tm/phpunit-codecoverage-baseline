@@ -31,6 +31,3 @@ jobs:
               glueSequentialComments: true
             registrar:
               type: DryRun
-            tags:
-              - todo
-              - fixme
