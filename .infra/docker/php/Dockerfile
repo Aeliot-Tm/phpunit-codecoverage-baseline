@@ -19,7 +19,7 @@ RUN set -xe; \
     rm -rf /var/lib/apt/lists/* && \
     apt-get clean
 
-COPY .docker/php/conf.d/*.ini /usr/local/etc/php/conf.d/
+COPY .infra/docker/php/conf.d/*.ini /usr/local/etc/php/conf.d/
 
 # Memory limit
 RUN echo "memory_limit = 1G" >> /usr/local/etc/php/php.ini
