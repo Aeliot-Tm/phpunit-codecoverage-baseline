@@ -1,6 +1,10 @@
 CHANGELOG
 =========
 
+2.1.0
+-----
+* Extend compatibility with `symfony/console` up to `^7.0`
+
 2.0.1
 -----
 * Bug fixes:
@@ -38,7 +42,7 @@ CHANGELOG
 * Minors:
   * Code refactored in OOP approach.
   * Removed messages about fallback to the default options values.
-  * Configured running of automated tests on GitHub. 
+  * Configured running of automated tests on GitHub.
 
 0.1
 ---
