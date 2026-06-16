@@ -1,94 +1,94 @@
 name: Automated Testing
 
 on:
-    push:
+  push:
 
 permissions:
-    contents: read
+  contents: read
 
 jobs:
-    composer:
-        runs-on: ubuntu-latest
+  composer:
+    runs-on: ubuntu-latest
 
-        strategy:
-            fail-fast: false
-            matrix:
-                include:
-                    - php-version: '7.4'
-                      lock-version: '3.4'
-                    - php-version: '7.4'
-                      lock-version: '4.4'
-                    - php-version: '8.0'
-                      lock-version: '5.0'
-                    - php-version: '8.1'
-                      lock-version: '6.0'
-                    - php-version: '8.2'
-                      lock-version: '7.0'
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - php-version: '7.4'
+            lock-version: '3.4'
+          - php-version: '7.4'
+            lock-version: '4.4'
+          - php-version: '8.0'
+            lock-version: '5.0'
+          - php-version: '8.1'
+            lock-version: '6.0'
+          - php-version: '8.2'
+            lock-version: '7.0'
 
-        steps:
-            - uses: "shivammathur/setup-php@v2"
-              with:
-                  php-version: "${{ matrix.php-version }}"
-                  tools: composer
+    steps:
+      - uses: "shivammathur/setup-php@v2"
+        with:
+          php-version: "${{ matrix.php-version }}"
+          tools: composer
 
-            - uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-            - name: Set versions
-              run: cp composer.${{ matrix.lock-version }}.lock composer.lock
+      - name: Set versions
+        run: cp composer.${{ matrix.lock-version }}.lock composer.lock
 
-            - name: Validate composer.json and composer.lock
-              run: composer validate --strict
+      - name: Validate composer.json and composer.lock
+        run: composer validate --strict
 
-    phpunit:
-        runs-on: ubuntu-latest
+  phpunit:
+    runs-on: ubuntu-latest
 
-        strategy:
-            fail-fast: false
-            matrix:
-                include:
-                    - php-version: '7.4'
-                      lock-version: '3.4'
-                    - php-version: '7.4'
-                      lock-version: '4.4'
-                    - php-version: '8.0'
-                      lock-version: '5.0'
-                    - php-version: '8.1'
-                      lock-version: '6.0'
-                    - php-version: '8.2'
-                      lock-version: '7.0'
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - php-version: '7.4'
+            lock-version: '3.4'
+          - php-version: '7.4'
+            lock-version: '4.4'
+          - php-version: '8.0'
+            lock-version: '5.0'
+          - php-version: '8.1'
+            lock-version: '6.0'
+          - php-version: '8.2'
+            lock-version: '7.0'
 
-        steps:
-            - uses: "shivammathur/setup-php@v2"
-              with:
-                  php-version: "${{ matrix.php-version }}"
-                  tools: composer
+    steps:
+      - uses: "shivammathur/setup-php@v2"
+        with:
+          php-version: "${{ matrix.php-version }}"
+          tools: composer
 
-            - uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-            - name: Set versions
-              run: cp composer.${{ matrix.lock-version }}.lock composer.lock
+      - name: Set versions
+        run: cp composer.${{ matrix.lock-version }}.lock composer.lock
 
-            - name: Install dependencies
-              uses: ramsey/composer-install@v3
+      - name: Install dependencies
+        uses: ramsey/composer-install@v3
 
-            - name: Run test suite
-              run: composer run-script phpunit
+      - name: Run test suite
+        run: composer run-script phpunit
 
-    phpstan:
-        runs-on: ubuntu-latest
-        steps:
-            - uses: "shivammathur/setup-php@v2"
-              with:
-                  php-version: 8.2
-                  tools: composer
+  phpstan:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: "shivammathur/setup-php@v2"
+        with:
+          php-version: 8.2
+          tools: composer
 
-            - uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-            - name: Set versions
-              run: cp composer.6.0.lock composer.lock
+      - name: Set versions
+        run: cp composer.6.0.lock composer.lock
 
-            - name: Install dependencies
-              uses: ramsey/composer-install@v3
+      - name: Install dependencies
+        uses: ramsey/composer-install@v3
 
-            - name: PHPStan analyse
-              run: composer run-script phpstan-analise
+      - name: PHPStan analyse
+        run: composer run-script phpstan-analise
