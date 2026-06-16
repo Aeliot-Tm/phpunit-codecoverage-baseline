@@ -15,7 +15,9 @@
   },
   "autoload-dev": {
     "psr-4": {
-      "Aeliot\\PHPUnitCodeCoverageBaseline\\Test\\": "tests/"
+      "Aeliot\\PHPUnitCodeCoverageBaseline\\Test\\Functional\\": "tests/functional",
+      "Aeliot\\PHPUnitCodeCoverageBaseline\\Test\\Integration\\": "tests/integration",
+      "Aeliot\\PHPUnitCodeCoverageBaseline\\Test\\Unit\\": "tests/unit"
     }
   },
   "bin": [
