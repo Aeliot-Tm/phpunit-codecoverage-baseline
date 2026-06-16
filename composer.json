@@ -48,6 +48,12 @@
       "@phpunit",
       "@phpstan"
     ],
+    "cs-baseline": "@cs-fixer-baseline",
+    "cs-check": "@cs-fixer-check",
+    "cs-fix": "@cs-fixer-fix",
+    "cs-fixer-baseline": "XDEBUG_MODE=off tools/pcsf-baseline.phar -b .infra/scripts/php-cs-fixer/baseline.json -c .infra/scripts/php-cs-fixer/config.php -f .infra/scripts/php-cs-fixer/finder.php",
+    "cs-fixer-check": "@cs-fixer-fix --dry-run",
+    "cs-fixer-fix": "XDEBUG_MODE=off tools/php-cs-fixer.phar fix -vv --config=.infra/scripts/php-cs-fixer/config.php",
     "phive-install": "phive install --trust-gpg-keys $(cat .phive/trust-gpg-keys.txt)",
     "phpunit": "vendor/bin/phpunit",
     "phpstan": [

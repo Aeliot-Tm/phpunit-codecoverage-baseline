@@ -1,0 +1,144 @@
+{
+    "config_hash": 2059855974,
+    "relative": true,
+    "hashes": {
+        "bin\/include_autoloader.php": {
+            "hash": 3751967888
+        },
+        "bin\/pccb": {
+            "hash": 377722391
+        },
+        "bin\/pccb_clover_build_baseline": {
+            "hash": 1001141607
+        },
+        "bin\/pccb_clover_compare": {
+            "hash": 3602477550
+        },
+        "src\/BaselineBuilder.php": {
+            "hash": 2575307279
+        },
+        "src\/BaselineReaderFactory.php": {
+            "hash": 2449257789
+        },
+        "src\/BaselineTransformer\/AwareTransformer.php": {
+            "hash": 1066565406
+        },
+        "src\/BaselineTransformer\/TransformerInterface.php": {
+            "hash": 41355792
+        },
+        "src\/BaselineTransformer\/V1P0Transformer.php": {
+            "hash": 1124159970
+        },
+        "src\/BaselineTransformer\/V2P0Transformer.php": {
+            "hash": 1880415523
+        },
+        "src\/CloverInputOptionsAssigner.php": {
+            "hash": 2707363182
+        },
+        "src\/Command\/CloverBuildBaselineCommand.php": {
+            "hash": 1718330082
+        },
+        "src\/Command\/CloverCompareCommand.php": {
+            "hash": 2000528791
+        },
+        "src\/Comparator.php": {
+            "hash": 3173551794
+        },
+        "src\/Enum\/SupportedType.php": {
+            "hash": 17262058
+        },
+        "src\/Enum\/Version.php": {
+            "hash": 1168935193
+        },
+        "src\/Model\/CloverCoverage.php": {
+            "hash": 2637160701
+        },
+        "src\/Model\/ComparingResult.php": {
+            "hash": 1259391188
+        },
+        "src\/Model\/ComparingRow.php": {
+            "hash": 1124405008
+        },
+        "src\/Model\/ConsoleTable.php": {
+            "hash": 990471622
+        },
+        "src\/Model\/Coverage.php": {
+            "hash": 3246209705
+        },
+        "src\/Reader\/BaselineReader.php": {
+            "hash": 2494491169
+        },
+        "src\/Reader\/BaselineReaderInterface.php": {
+            "hash": 4085143647
+        },
+        "src\/Reader\/BaselineTransformingReader.php": {
+            "hash": 137724730
+        },
+        "src\/Reader\/CloverReader.php": {
+            "hash": 3676897418
+        },
+        "src\/Writer\/BaselineWriter.php": {
+            "hash": 1218880536
+        },
+        "tests\/Functional\/Command\/CloverCompareCommandTest.php": {
+            "hash": 303154554
+        },
+        "tests\/Functional\/FunctionalTestCase.php": {
+            "hash": 1675006632
+        },
+        "tests\/Integration\/ComparatorTest.php": {
+            "hash": 3011444880
+        },
+        "tests\/Integration\/IntegrationTestCase.php": {
+            "hash": 277100068
+        },
+        "tests\/Unit\/BaselineBuilderTest.php": {
+            "hash": 2321452564
+        },
+        "tests\/Unit\/BaselineTransformer\/AwareTransformerTest.php": {
+            "hash": 3352553532
+        },
+        "tests\/Unit\/BaselineTransformer\/V1P0TransformerTest.php": {
+            "hash": 2548812050
+        },
+        "tests\/Unit\/BaselineTransformer\/V2P0TransformerTest.php": {
+            "hash": 828654378
+        },
+        "tests\/Unit\/ComparatorTest.php": {
+            "hash": 2106385351
+        },
+        "tests\/Unit\/Model\/CloverCoverageTest.php": {
+            "hash": 1888879215
+        },
+        "tests\/Unit\/Model\/ComparingResultTest.php": {
+            "hash": 2330602693
+        },
+        "tests\/Unit\/Model\/ComparingRowTest.php": {
+            "hash": 1328213340
+        },
+        "tests\/Unit\/Model\/ConsoleTableTest.php": {
+            "hash": 1703262975
+        },
+        "tests\/Unit\/Model\/CoverageTest.php": {
+            "hash": 2620315024
+        },
+        "tests\/Unit\/Reader\/BaselineReaderTest.php": {
+            "hash": 1828927139
+        },
+        "tests\/Unit\/Reader\/BaselineTransformingReaderTest.php": {
+            "hash": 1303540972
+        },
+        "tests\/Unit\/Reader\/CloverReaderTest.php": {
+            "hash": 1467863958
+        },
+        "tests\/Unit\/UnitTestCase.php": {
+            "hash": 2467310420
+        },
+        "tests\/Unit\/Writer\/BaselineWriterTest.php": {
+            "hash": 1455058580
+        },
+        "tests\/bootstrap.php": {
+            "hash": 1297360552
+        }
+    }
+}
