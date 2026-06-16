@@ -1,6 +1,13 @@
 <?php
 
-declare(strict_types=1);
+/*
+ * This file is part of the PHPUnit code coverage baseline project.
+ *
+ * (c) Anatoliy Melnikov <5785276@gmail.com>
+ *
+ * This source file is subject to the MIT license that is bundled
+ * with this source code in the file LICENSE.
+ */
 
 if (isset($GLOBALS['_composer_autoload_path'])) {
     define('PHPUNIT_CCB_COMPOSER_AUTOLOAD_PATH', $GLOBALS['_composer_autoload_path']);
@@ -22,12 +29,12 @@ if (isset($GLOBALS['_composer_autoload_path'])) {
 
 if (!defined('PHPUNIT_CCB_COMPOSER_AUTOLOAD_PATH')) {
     fwrite(
-        STDERR,
-        'You need to set up the project dependencies using Composer:' . PHP_EOL . PHP_EOL .
-        '    composer install' . PHP_EOL . PHP_EOL .
-        'You can learn all about Composer on https://getcomposer.org/.' . PHP_EOL
+        \STDERR,
+        'You need to set up the project dependencies using Composer:' . \PHP_EOL . \PHP_EOL .
+        '    composer install' . \PHP_EOL . \PHP_EOL .
+        'You can learn all about Composer on https://getcomposer.org/.' . \PHP_EOL
     );
-    die(1);
+    exit(1);
 }
 
 require PHPUNIT_CCB_COMPOSER_AUTOLOAD_PATH;

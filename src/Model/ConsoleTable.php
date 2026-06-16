@@ -1,6 +1,13 @@
 <?php
 
-declare(strict_types=1);
+/*
+ * This file is part of the PHPUnit code coverage baseline project.
+ *
+ * (c) Anatoliy Melnikov <5785276@gmail.com>
+ *
+ * This source file is subject to the MIT license that is bundled
+ * with this source code in the file LICENSE.
+ */
 
 namespace Aeliot\PHPUnitCodeCoverageBaseline\Model;
 
@@ -37,7 +44,7 @@ final class ConsoleTable
     public function __construct(array $columns)
     {
         $this->columns = $columns;
-        $this->columnsCount = count($columns);
+        $this->columnsCount = \count($columns);
         $this->columnsKeys = array_keys($this->columns);
         $this->columnsWidth = array_map('strlen', array_values($columns));
     }
@@ -47,8 +54,8 @@ final class ConsoleTable
         $data = $row->getValues();
         $values = [];
         foreach ($this->columnsKeys as $key) {
-            if (!array_key_exists($key, $data)) {
-                throw new \InvalidArgumentException(sprintf('Row does not contain column "%s"', $key));
+            if (!\array_key_exists($key, $data)) {
+                throw new \InvalidArgumentException(\sprintf('Row does not contain column "%s"', $key));
             }
 
             $values[] = $data[$key];
@@ -56,7 +63,7 @@ final class ConsoleTable
         }
 
         if ($data) {
-            $message = sprintf('Row contain extra column(s): %s', implode(', ', array_keys($data)));
+            $message = \sprintf('Row contain extra column(s): %s', implode(', ', array_keys($data)));
             throw new \InvalidArgumentException($message);
         }
 
@@ -65,7 +72,7 @@ final class ConsoleTable
 
     public function addLine(string ...$values): void
     {
-        if (count($values) !== $this->columnsCount) {
+        if (\count($values) !== $this->columnsCount) {
             throw new \InvalidArgumentException('Invalid values count');
         }
 
@@ -86,12 +93,12 @@ final class ConsoleTable
             $content[] = $this->buildSeparateLine();
         }
 
-        return implode(PHP_EOL, $content) . PHP_EOL;
+        return implode(\PHP_EOL, $content) . \PHP_EOL;
     }
 
     private function buildSeparateLine(): string
     {
-        return $this->buildTableLine(array_fill(0, count($this->columns), ''), '-');
+        return $this->buildTableLine(array_fill(0, \count($this->columns), ''), '-');
     }
 
     /**

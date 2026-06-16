@@ -48,6 +48,12 @@
       "@phpunit",
       "@phpstan"
     ],
+    "cs-baseline": "@cs-fixer-baseline",
+    "cs-check": "@cs-fixer-check",
+    "cs-fix": "@cs-fixer-fix",
+    "cs-fixer-baseline": "XDEBUG_MODE=off tools/pcsf-baseline.phar -b .infra/scripts/php-cs-fixer/baseline.json -c .infra/scripts/php-cs-fixer/config.php -f .infra/scripts/php-cs-fixer/finder.php",
+    "cs-fixer-check": "@cs-fixer-fix --dry-run",
+    "cs-fixer-fix": "XDEBUG_MODE=off tools/php-cs-fixer.phar fix -vv --config=.infra/scripts/php-cs-fixer/config.php",
     "phive-install": "phive install --trust-gpg-keys $(cat .phive/trust-gpg-keys.txt)",
     "phpunit": "vendor/bin/phpunit",
     "phpstan": [
@@ -57,7 +63,7 @@
     "phpstan-analise": "vendor/bin/phpstan analyse -c .infra/scripts/phpstan/config.neon",
     "phpstan-baseline": [
       "@phpstan-clear",
-      "@phpstan-analise --generate-baseline phpstan-baseline.neon"
+      "@phpstan-analise --generate-baseline .infra/scripts/phpstan/baseline.neon"
     ],
     "phpstan-clear": "vendor/bin/phpstan clear-result-cache -c .infra/scripts/phpstan/config.neon",
     "set_versions": "sh bin/dev/set_composer_versions"

@@ -1,6 +1,13 @@
 <?php
 
-declare(strict_types=1);
+/*
+ * This file is part of the PHPUnit code coverage baseline project.
+ *
+ * (c) Anatoliy Melnikov <5785276@gmail.com>
+ *
+ * This source file is subject to the MIT license that is bundled
+ * with this source code in the file LICENSE.
+ */
 
 namespace Aeliot\PHPUnitCodeCoverageBaseline\Enum;
 
@@ -29,9 +36,9 @@ final class Version
     /**
      * @codeCoverageIgnore
      */
-    public function __wakeup()
+    public function __unserialize(array $data): void
     {
         // forbid creating of an instance
-        throw new \DomainException(sprintf('It is forbidden to create an instance of %s', __CLASS__));
+        throw new \DomainException(\sprintf('It is forbidden to create an instance of %s', __CLASS__));
     }
 }

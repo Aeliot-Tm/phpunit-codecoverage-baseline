@@ -1,6 +1,13 @@
 <?php
 
-declare(strict_types=1);
+/*
+ * This file is part of the PHPUnit code coverage baseline project.
+ *
+ * (c) Anatoliy Melnikov <5785276@gmail.com>
+ *
+ * This source file is subject to the MIT license that is bundled
+ * with this source code in the file LICENSE.
+ */
 
 namespace Aeliot\PHPUnitCodeCoverageBaseline\Test\Unit;
 
@@ -10,7 +17,7 @@ use PHPUnit\Framework\TestCase;
 abstract class UnitTestCase extends TestCase
 {
     /**
-     * Add fallback for running with different versions of PHPUnit
+     * Add fallback for running with different versions of PHPUnit.
      */
     public function expectExceptionMessageMatches(string $messageRegExp): void
     {
@@ -19,12 +26,12 @@ abstract class UnitTestCase extends TestCase
         } elseif (method_exists(parent::class, 'expectExceptionMessageRegExp')) {
             parent::expectExceptionMessageRegExp($messageRegExp);
         } else {
-            throw new \DomainException(sprintf('It is impossible to call method %s', __METHOD__));
+            throw new \DomainException(\sprintf('It is impossible to call method %s', __METHOD__));
         }
     }
 
     /**
-     * Add fallback for running with different versions of PHPUnit
+     * Add fallback for running with different versions of PHPUnit.
      */
     public function expectWarningMessageMatches(string $messageRegExp): void
     {

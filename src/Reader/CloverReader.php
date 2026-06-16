@@ -1,6 +1,13 @@
 <?php
 
-declare(strict_types=1);
+/*
+ * This file is part of the PHPUnit code coverage baseline project.
+ *
+ * (c) Anatoliy Melnikov <5785276@gmail.com>
+ *
+ * This source file is subject to the MIT license that is bundled
+ * with this source code in the file LICENSE.
+ */
 
 namespace Aeliot\PHPUnitCodeCoverageBaseline\Reader;
 
@@ -44,9 +51,7 @@ final class CloverReader
     private function getClover(): \SimpleXMLElement
     {
         if (!file_exists($this->path) || !is_file($this->path) || !is_readable($this->path)) {
-            throw new \RuntimeException(
-                sprintf('Coverage clover file "%s" does not exist. Maybe it is not calculated yet.', $this->path)
-            );
+            throw new \RuntimeException(\sprintf('Coverage clover file "%s" does not exist. Maybe it is not calculated yet.', $this->path));
         }
 
         $clover = simplexml_load_string((string) file_get_contents($this->path));
@@ -62,8 +67,6 @@ final class CloverReader
     }
 
     /**
-     * @param \SimpleXMLElement $attributes
-     *
      * @return array<string,int>
      */
     private function transformAttributes(\SimpleXMLElement $attributes): array

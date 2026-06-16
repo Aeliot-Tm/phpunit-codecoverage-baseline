@@ -1,6 +1,13 @@
 <?php
 
-declare(strict_types=1);
+/*
+ * This file is part of the PHPUnit code coverage baseline project.
+ *
+ * (c) Anatoliy Melnikov <5785276@gmail.com>
+ *
+ * This source file is subject to the MIT license that is bundled
+ * with this source code in the file LICENSE.
+ */
 
 namespace Aeliot\PHPUnitCodeCoverageBaseline\Command;
 
@@ -43,7 +50,7 @@ final class CloverCompareCommand extends Command
         if ($regressedTypes = $results->getRegressedNames()) {
             $exitCode = 1;
             if (!$output->isQuiet()) {
-                $output->writeln(sprintf('[ERROR] There is detected regress of code coverage on types: %s.', implode(', ', $regressedTypes)));
+                $output->writeln(\sprintf('[ERROR] There is detected regress of code coverage on types: %s.', implode(', ', $regressedTypes)));
             }
         }
 

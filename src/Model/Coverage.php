@@ -1,6 +1,13 @@
 <?php
 
-declare(strict_types=1);
+/*
+ * This file is part of the PHPUnit code coverage baseline project.
+ *
+ * (c) Anatoliy Melnikov <5785276@gmail.com>
+ *
+ * This source file is subject to the MIT license that is bundled
+ * with this source code in the file LICENSE.
+ */
 
 namespace Aeliot\PHPUnitCodeCoverageBaseline\Model;
 
@@ -47,7 +54,7 @@ final class Coverage implements \ArrayAccess, \IteratorAggregate
     public function offsetGet($offset): float
     {
         if (!isset($this->metrics[$offset])) {
-            throw new \OutOfBoundsException(sprintf('Invalid offset %s', $offset));
+            throw new \OutOfBoundsException(\sprintf('Invalid offset %s', $offset));
         }
 
         return $this->metrics[$offset];
@@ -64,8 +71,8 @@ final class Coverage implements \ArrayAccess, \IteratorAggregate
         if (is_numeric($value)) {
             $value = (float) $value;
         }
-        if (!is_float($value)) {
-            throw new \InvalidArgumentException(sprintf('Value of "%s" is not numeric', $offset));
+        if (!\is_float($value)) {
+            throw new \InvalidArgumentException(\sprintf('Value of "%s" is not numeric', $offset));
         }
 
         $this->metrics[$offset] = $value;

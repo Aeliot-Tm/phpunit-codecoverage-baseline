@@ -1,6 +1,13 @@
 <?php
 
-declare(strict_types=1);
+/*
+ * This file is part of the PHPUnit code coverage baseline project.
+ *
+ * (c) Anatoliy Melnikov <5785276@gmail.com>
+ *
+ * This source file is subject to the MIT license that is bundled
+ * with this source code in the file LICENSE.
+ */
 
 namespace Aeliot\PHPUnitCodeCoverageBaseline\Writer;
 
@@ -28,7 +35,7 @@ final class BaselineWriter
             'version' => Version::CURRENT,
             'metrics' => iterator_to_array($baseline),
         ];
-        $content = json_encode($data, JSON_PRETTY_PRINT);
+        $content = json_encode($data, \JSON_PRETTY_PRINT);
         if (json_last_error()) {
             throw new \LogicException(json_last_error_msg());
         }

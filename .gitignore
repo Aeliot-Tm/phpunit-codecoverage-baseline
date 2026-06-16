@@ -1,8 +1,8 @@
 .idea
 /build/
 /tools/
+/var/
 /vendor/
 /.phpunit.result.cache
 /compose.override.yaml
 /composer.lock
-/phpstan.neon

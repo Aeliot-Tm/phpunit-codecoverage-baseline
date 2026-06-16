@@ -1,6 +1,13 @@
 <?php
 
-declare(strict_types=1);
+/*
+ * This file is part of the PHPUnit code coverage baseline project.
+ *
+ * (c) Anatoliy Melnikov <5785276@gmail.com>
+ *
+ * This source file is subject to the MIT license that is bundled
+ * with this source code in the file LICENSE.
+ */
 
 namespace Aeliot\PHPUnitCodeCoverageBaseline\Model;
 
@@ -44,7 +51,7 @@ final class CloverCoverage
     {
         $keys = array_keys($data);
         $coveredKeys = array_filter($keys, static function (string $x): bool {
-            return stripos($x, 'covered') === 0;
+            return 0 === stripos($x, 'covered');
         });
 
         $coveredTypes = array_map(static function (string $x): string {
@@ -52,7 +59,7 @@ final class CloverCoverage
         }, $coveredKeys);
         $missedTypes = array_diff($coveredTypes, $keys);
         if ($missedTypes) {
-            throw new \InvalidArgumentException(sprintf('Missed types detected: %s', implode(', ', $coveredTypes)));
+            throw new \InvalidArgumentException(\sprintf('Missed types detected: %s', implode(', ', $coveredTypes)));
         }
 
         return array_diff($keys, $coveredKeys);

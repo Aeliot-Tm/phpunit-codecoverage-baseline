@@ -1,6 +1,13 @@
 <?php
 
-declare(strict_types=1);
+/*
+ * This file is part of the PHPUnit code coverage baseline project.
+ *
+ * (c) Anatoliy Melnikov <5785276@gmail.com>
+ *
+ * This source file is subject to the MIT license that is bundled
+ * with this source code in the file LICENSE.
+ */
 
 namespace Aeliot\PHPUnitCodeCoverageBaseline\Test\Functional\Command;
 
@@ -30,6 +37,6 @@ Good job! You improved code coverage. Update baseline.
 OUTPUT;
 
         self::assertEquals(0, $resultCode);
-        self::assertEquals($expected, implode(PHP_EOL, $output));
+        self::assertEquals($expected, implode(\PHP_EOL, $output));
     }
 }

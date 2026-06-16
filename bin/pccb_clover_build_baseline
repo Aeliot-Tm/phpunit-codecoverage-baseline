@@ -1,7 +1,14 @@
 #!/usr/bin/env php
 <?php
 
-declare(strict_types=1);
+/*
+ * This file is part of the PHPUnit code coverage baseline project.
+ *
+ * (c) Anatoliy Melnikov <5785276@gmail.com>
+ *
+ * This source file is subject to the MIT license that is bundled
+ * with this source code in the file LICENSE.
+ */
 
 use Aeliot\PHPUnitCodeCoverageBaseline\Command\CloverBuildBaselineCommand;
 use Aeliot\PHPUnitCodeCoverageBaseline\Enum\Version;
@@ -17,8 +24,8 @@ try {
     $application->add($command = new CloverBuildBaselineCommand());
     $application->setDefaultCommand($command->getName(), true);
     $exitCode = $application->run();
-} catch (\Throwable $exception) {
-    fwrite(STDERR, sprintf('[ERROR] %s%s', $exception->getMessage(), PHP_EOL));
+} catch (Throwable $exception) {
+    fwrite(\STDERR, sprintf('[ERROR] %s%s', $exception->getMessage(), \PHP_EOL));
     $exitCode = 2;
 }
 
