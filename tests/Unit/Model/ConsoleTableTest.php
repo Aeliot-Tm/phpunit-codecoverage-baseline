@@ -1,6 +1,13 @@
 <?php
 
-declare(strict_types=1);
+/*
+ * This file is part of the PHPUnit code coverage baseline project.
+ *
+ * (c) Anatoliy Melnikov <5785276@gmail.com>
+ *
+ * This source file is subject to the MIT license that is bundled
+ * with this source code in the file LICENSE.
+ */
 
 namespace Aeliot\PHPUnitCodeCoverageBaseline\Test\Unit\Model;
 
@@ -109,11 +116,11 @@ final class ConsoleTableTest extends UnitTestCase
     public function getDataForTestAddComparingPositiveFlow(): iterable
     {
         yield 'with string keys' => [
-            '|----------|----------|' . PHP_EOL .
-            '| Column 1 | Column 2 |' . PHP_EOL .
-            '|----------|----------|' . PHP_EOL .
-            '| Value 1  | Value 2  |' . PHP_EOL .
-            '|----------|----------|' . PHP_EOL,
+            '|----------|----------|' . \PHP_EOL .
+            '| Column 1 | Column 2 |' . \PHP_EOL .
+            '|----------|----------|' . \PHP_EOL .
+            '| Value 1  | Value 2  |' . \PHP_EOL .
+            '|----------|----------|' . \PHP_EOL,
             [
                 'c1' => 'Column 1',
                 'c2' => 'Column 2',
@@ -125,11 +132,11 @@ final class ConsoleTableTest extends UnitTestCase
         ];
 
         yield 'with int keys' => [
-            '|----------|----------|' . PHP_EOL .
-            '| Column 1 | Column 2 |' . PHP_EOL .
-            '|----------|----------|' . PHP_EOL .
-            '| Value 1  | Value 2  |' . PHP_EOL .
-            '|----------|----------|' . PHP_EOL,
+            '|----------|----------|' . \PHP_EOL .
+            '| Column 1 | Column 2 |' . \PHP_EOL .
+            '|----------|----------|' . \PHP_EOL .
+            '| Value 1  | Value 2  |' . \PHP_EOL .
+            '|----------|----------|' . \PHP_EOL,
             [
                 'Column 1',
                 'Column 2',
@@ -147,11 +154,11 @@ final class ConsoleTableTest extends UnitTestCase
     public function getDataForTestAddComparingRowSortsValues(): iterable
     {
         yield 'string keys, sorted columns & values' => [
-            '|----------|----------|' . PHP_EOL .
-            '| Column 1 | Column 2 |' . PHP_EOL .
-            '|----------|----------|' . PHP_EOL .
-            '| Value 1  | Value 2  |' . PHP_EOL .
-            '|----------|----------|' . PHP_EOL,
+            '|----------|----------|' . \PHP_EOL .
+            '| Column 1 | Column 2 |' . \PHP_EOL .
+            '|----------|----------|' . \PHP_EOL .
+            '| Value 1  | Value 2  |' . \PHP_EOL .
+            '|----------|----------|' . \PHP_EOL,
             [
                 'c1' => 'Column 1',
                 'c2' => 'Column 2',
@@ -163,11 +170,11 @@ final class ConsoleTableTest extends UnitTestCase
         ];
 
         yield 'string keys, sorted columns, not sorted values' => [
-            '|----------|----------|' . PHP_EOL .
-            '| Column 1 | Column 2 |' . PHP_EOL .
-            '|----------|----------|' . PHP_EOL .
-            '| Value 1  | Value 2  |' . PHP_EOL .
-            '|----------|----------|' . PHP_EOL,
+            '|----------|----------|' . \PHP_EOL .
+            '| Column 1 | Column 2 |' . \PHP_EOL .
+            '|----------|----------|' . \PHP_EOL .
+            '| Value 1  | Value 2  |' . \PHP_EOL .
+            '|----------|----------|' . \PHP_EOL,
             [
                 'c1' => 'Column 1',
                 'c2' => 'Column 2',
@@ -179,11 +186,11 @@ final class ConsoleTableTest extends UnitTestCase
         ];
 
         yield 'string keys, reversed columns, sorted values' => [
-            '|----------|----------|' . PHP_EOL .
-            '| Column 2 | Column 1 |' . PHP_EOL .
-            '|----------|----------|' . PHP_EOL .
-            '| Value 2  | Value 1  |' . PHP_EOL .
-            '|----------|----------|' . PHP_EOL,
+            '|----------|----------|' . \PHP_EOL .
+            '| Column 2 | Column 1 |' . \PHP_EOL .
+            '|----------|----------|' . \PHP_EOL .
+            '| Value 2  | Value 1  |' . \PHP_EOL .
+            '|----------|----------|' . \PHP_EOL,
             [
                 'c2' => 'Column 2',
                 'c1' => 'Column 1',
@@ -195,11 +202,11 @@ final class ConsoleTableTest extends UnitTestCase
         ];
 
         yield 'int keys, sorted columns & values' => [
-            '|----------|----------|' . PHP_EOL .
-            '| Column 1 | Column 2 |' . PHP_EOL .
-            '|----------|----------|' . PHP_EOL .
-            '| Value 1  | Value 2  |' . PHP_EOL .
-            '|----------|----------|' . PHP_EOL,
+            '|----------|----------|' . \PHP_EOL .
+            '| Column 1 | Column 2 |' . \PHP_EOL .
+            '|----------|----------|' . \PHP_EOL .
+            '| Value 1  | Value 2  |' . \PHP_EOL .
+            '|----------|----------|' . \PHP_EOL,
             [
                 1 => 'Column 1',
                 2 => 'Column 2',
@@ -211,11 +218,11 @@ final class ConsoleTableTest extends UnitTestCase
         ];
 
         yield 'int keys, sorted columns, not sorted values' => [
-            '|----------|----------|' . PHP_EOL .
-            '| Column 1 | Column 2 |' . PHP_EOL .
-            '|----------|----------|' . PHP_EOL .
-            '| Value 1  | Value 2  |' . PHP_EOL .
-            '|----------|----------|' . PHP_EOL,
+            '|----------|----------|' . \PHP_EOL .
+            '| Column 1 | Column 2 |' . \PHP_EOL .
+            '|----------|----------|' . \PHP_EOL .
+            '| Value 1  | Value 2  |' . \PHP_EOL .
+            '|----------|----------|' . \PHP_EOL,
             [
                 1 => 'Column 1',
                 2 => 'Column 2',
@@ -227,11 +234,11 @@ final class ConsoleTableTest extends UnitTestCase
         ];
 
         yield 'int keys, reversed columns, sorted values' => [
-            '|----------|----------|' . PHP_EOL .
-            '| Column 2 | Column 1 |' . PHP_EOL .
-            '|----------|----------|' . PHP_EOL .
-            '| Value 2  | Value 1  |' . PHP_EOL .
-            '|----------|----------|' . PHP_EOL,
+            '|----------|----------|' . \PHP_EOL .
+            '| Column 2 | Column 1 |' . \PHP_EOL .
+            '|----------|----------|' . \PHP_EOL .
+            '| Value 2  | Value 1  |' . \PHP_EOL .
+            '|----------|----------|' . \PHP_EOL,
             [
                 'c2' => 'Column 2',
                 'c1' => 'Column 1',
@@ -336,20 +343,20 @@ final class ConsoleTableTest extends UnitTestCase
     public function getDataForTestExtendsByColumn(): iterable
     {
         yield [
-            '|-------------|' . PHP_EOL .
-            '| long column |' . PHP_EOL .
-            '|-------------|' . PHP_EOL .
-            '| any         |' . PHP_EOL .
-            '|-------------|' . PHP_EOL,
+            '|-------------|' . \PHP_EOL .
+            '| long column |' . \PHP_EOL .
+            '|-------------|' . \PHP_EOL .
+            '| any         |' . \PHP_EOL .
+            '|-------------|' . \PHP_EOL,
             ['long column'],
             ['any'],
         ];
         yield [
-            '|---------------|--------|' . PHP_EOL .
-            '| long column 1 | long 2 |' . PHP_EOL .
-            '|---------------|--------|' . PHP_EOL .
-            '| any           | any    |' . PHP_EOL .
-            '|---------------|--------|' . PHP_EOL,
+            '|---------------|--------|' . \PHP_EOL .
+            '| long column 1 | long 2 |' . \PHP_EOL .
+            '|---------------|--------|' . \PHP_EOL .
+            '| any           | any    |' . \PHP_EOL .
+            '|---------------|--------|' . \PHP_EOL,
             ['long column 1', 'long 2'],
             ['any', 'any'],
         ];
@@ -361,20 +368,20 @@ final class ConsoleTableTest extends UnitTestCase
     public function getDataForTestExtendsByValue(): iterable
     {
         yield [
-            '|------------|' . PHP_EOL .
-            '| any        |' . PHP_EOL .
-            '|------------|' . PHP_EOL .
-            '| long value |' . PHP_EOL .
-            '|------------|' . PHP_EOL,
+            '|------------|' . \PHP_EOL .
+            '| any        |' . \PHP_EOL .
+            '|------------|' . \PHP_EOL .
+            '| long value |' . \PHP_EOL .
+            '|------------|' . \PHP_EOL,
             ['any'],
             ['long value'],
         ];
         yield [
-            '|--------------|--------------|' . PHP_EOL .
-            '| any          | any 2        |' . PHP_EOL .
-            '|--------------|--------------|' . PHP_EOL .
-            '| long value 1 | another long |' . PHP_EOL .
-            '|--------------|--------------|' . PHP_EOL,
+            '|--------------|--------------|' . \PHP_EOL .
+            '| any          | any 2        |' . \PHP_EOL .
+            '|--------------|--------------|' . \PHP_EOL .
+            '| long value 1 | another long |' . \PHP_EOL .
+            '|--------------|--------------|' . \PHP_EOL,
             ['any', 'any 2'],
             ['long value 1', 'another long'],
         ];
@@ -386,15 +393,15 @@ final class ConsoleTableTest extends UnitTestCase
     public function getDataForTestPrintHeaders(): iterable
     {
         yield [
-            '|---|' . PHP_EOL .
-            '| a |' . PHP_EOL .
-            '|---|' . PHP_EOL,
+            '|---|' . \PHP_EOL .
+            '| a |' . \PHP_EOL .
+            '|---|' . \PHP_EOL,
             ['a'],
         ];
         yield [
-            '|---|---|' . PHP_EOL .
-            '| a | b |' . PHP_EOL .
-            '|---|---|' . PHP_EOL,
+            '|---|---|' . \PHP_EOL .
+            '| a | b |' . \PHP_EOL .
+            '|---|---|' . \PHP_EOL,
             ['a', 'b'],
         ];
     }

@@ -1,6 +1,13 @@
 <?php
 
-declare(strict_types=1);
+/*
+ * This file is part of the PHPUnit code coverage baseline project.
+ *
+ * (c) Anatoliy Melnikov <5785276@gmail.com>
+ *
+ * This source file is subject to the MIT license that is bundled
+ * with this source code in the file LICENSE.
+ */
 
 namespace Aeliot\PHPUnitCodeCoverageBaseline\Test\Unit\Writer;
 
@@ -13,7 +20,7 @@ final class BaselineWriterTest extends UnitTestCase
 {
     public function testPositiveFlow(): void
     {
-        $suffix = str_pad((string) random_int(0, 9999), 4, '0', STR_PAD_LEFT);
+        $suffix = str_pad((string) random_int(0, 9999), 4, '0', \STR_PAD_LEFT);
         $path = $this->getTmpDir() . '/base_line_' . $suffix . '.json';
         (new BaselineWriter($path))->write(new Coverage(['a' => 1]));
         self::assertFileExists($path);
