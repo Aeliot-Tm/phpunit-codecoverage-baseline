@@ -2,10 +2,10 @@ includes:
 	- ./baseline.neon
 
 parameters:
-    level: 7
-    reportUnmatchedIgnoredErrors: false
+	level: 7
+	reportUnmatchedIgnoredErrors: false
 
-    paths:
-        - ../../../bin
-        - ../../../src
-        - ../../../tests
+	paths:
+		- ../../../bin
+		- ../../../src
+		- ../../../tests
