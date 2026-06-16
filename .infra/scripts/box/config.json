@@ -1,0 +1,30 @@
+{
+    "alias": "pccb.phar",
+    "base-path": "/app/",
+    "directories": [
+        "src"
+    ],
+    "files": [
+        "bin/include_autoloader.php",
+        "composer.json",
+        "composer.lock",
+        "LICENSE",
+        "README.md"
+    ],
+    "finder": [
+        {
+            "exclude": [
+                ".github",
+                "doc",
+                "test",
+                "test_old",
+                "tests",
+                "Tests",
+                "vendor-bin"
+            ],
+            "in": "vendor"
+        }
+    ],
+    "main": "bin/pccb",
+    "output": "pccb.phar"
+}

@@ -44,6 +44,10 @@
     "phpunit/phpunit": "^7.5|^9.5"
   },
   "scripts": {
+    "build": [
+      "php .infra/scripts/box/prepare-config.php",
+      "box compile --config=.infra/scripts/box/config.json"
+    ],
     "test": [
       "@phpunit",
       "@phpstan"

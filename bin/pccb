@@ -12,13 +12,12 @@
 
 use Aeliot\PHPUnitCodeCoverageBaseline\Command\CloverBuildBaselineCommand;
 use Aeliot\PHPUnitCodeCoverageBaseline\Command\CloverCompareCommand;
-use Aeliot\PHPUnitCodeCoverageBaseline\Enum\Version;
-use Symfony\Component\Console\Application;
+use Aeliot\PHPUnitCodeCoverageBaseline\Console\Application;
 
 require __DIR__ . '/include_autoloader.php';
 
 try {
-    $application = new Application('PCCB', Version::CURRENT);
+    $application = new Application();
     $application->add(new CloverCompareCommand());
     $application->add(new CloverBuildBaselineCommand());
     $exitCode = $application->run();
