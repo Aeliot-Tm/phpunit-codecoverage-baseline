@@ -66,7 +66,9 @@
       "@phpstan-analise --generate-baseline .infra/scripts/phpstan/baseline.neon"
     ],
     "phpstan-clear": "vendor/bin/phpstan clear-result-cache -c .infra/scripts/phpstan/config.neon",
-    "set_versions": "sh bin/dev/set_composer_versions"
+    "require-check": "tools/composer-require-checker.phar check --config-file=.infra/scripts/composer-require-checker/config.json composer.json --output=text",
+    "set_versions": "sh bin/dev/set_composer_versions",
+    "unused": "XDEBUG_MODE=off tools/composer-unused.phar unused -c .infra/scripts/composer-unused/config.php"
   },
   "suggest": {
     "phpunit/phpunit": "PHPUnit must be used to generate code coverage report."
