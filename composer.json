@@ -63,7 +63,7 @@
     "phpstan-analise": "vendor/bin/phpstan analyse -c .infra/scripts/phpstan/config.neon",
     "phpstan-baseline": [
       "@phpstan-clear",
-      "@phpstan-analise --generate-baseline phpstan-baseline.neon"
+      "@phpstan-analise --generate-baseline .infra/scripts/phpstan/baseline.neon"
     ],
     "phpstan-clear": "vendor/bin/phpstan clear-result-cache -c .infra/scripts/phpstan/config.neon",
     "set_versions": "sh bin/dev/set_composer_versions"
