@@ -74,6 +74,19 @@ jobs:
       - name: Run test suite
         run: composer run-script phpunit
 
+  php-cs-check:
+    name: 'PHP CS Fixer: check'
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v6
+      - uses: ./.github/actions/setup-php
+      - uses: ./.github/actions/setup-composer
+      - uses: ./.github/actions/setup-phive
+
+      - name: 'Run PHP CS Fixer: check'
+        run: composer run cs-fixer-check
+
   phpstan:
     runs-on: ubuntu-latest
     steps:
