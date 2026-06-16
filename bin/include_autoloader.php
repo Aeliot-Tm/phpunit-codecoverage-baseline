@@ -9,7 +9,7 @@
  * with this source code in the file LICENSE.
  */
 
-if (\Phar::running()) {
+if (Phar::running()) {
     define('PHPUNIT_CCB_COMPOSER_AUTOLOAD_PATH', __DIR__ . '/../vendor/autoload.php');
 } elseif (isset($GLOBALS['_composer_autoload_path'])) {
     define('PHPUNIT_CCB_COMPOSER_AUTOLOAD_PATH', $GLOBALS['_composer_autoload_path']);
