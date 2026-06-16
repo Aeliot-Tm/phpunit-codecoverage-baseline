@@ -6,3 +6,5 @@
 /.phpunit.result.cache
 /compose.override.yaml
 /composer.lock
+/pccb.phar
+/pccb.phar.asc

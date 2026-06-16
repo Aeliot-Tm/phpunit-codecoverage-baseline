@@ -7,6 +7,11 @@ Compare Clover report with baseline
    ```shell
    vendor/bin/pccb pccb:clover:compare -vv
    ```
+   or
+   ```shell
+   pccb.phar pccb:clover:compare -vv
+   ```
+
    It accepts options:
 
 | Full name    | Short name | Description                                                                                                       | Default value                  |

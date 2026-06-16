@@ -9,10 +9,11 @@ Package implements support of baseline for Clover repost of PHPUnit.
 Installation
 ------------
 
-Call command line script to install: 
-```shell
-composer require --dev aeliot-tm/phpunit-codecoverage-baseline
-```
+1. Call command line script to install as dev-dependency via Composer: 
+   ```shell
+   composer require --dev aeliot-tm/phpunit-codecoverage-baseline
+   ```
+2. [PHAR file](docs/using/phar.md)
 
 Usage
 -----

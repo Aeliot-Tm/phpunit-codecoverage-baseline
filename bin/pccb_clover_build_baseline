@@ -11,8 +11,7 @@
  */
 
 use Aeliot\PHPUnitCodeCoverageBaseline\Command\CloverBuildBaselineCommand;
-use Aeliot\PHPUnitCodeCoverageBaseline\Enum\Version;
-use Symfony\Component\Console\Application;
+use Aeliot\PHPUnitCodeCoverageBaseline\Console\Application;
 
 require __DIR__ . '/include_autoloader.php';
 
@@ -20,7 +19,7 @@ require __DIR__ . '/include_autoloader.php';
     . ' Use call "bin/pccb pccb:clover:build-baseline" instead.', \E_USER_DEPRECATED);
 
 try {
-    $application = new Application('PCCB', Version::CURRENT);
+    $application = new Application();
     $application->add($command = new CloverBuildBaselineCommand());
     $application->setDefaultCommand($command->getName(), true);
     $exitCode = $application->run();
