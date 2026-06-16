@@ -1,6 +1,10 @@
 CHANGELOG
 =========
 
+2.2.0
+-----
+* Release PHAR version of the package.
+
 2.1.0
 -----
 * Extend compatibility with `symfony/console` up to `^7.0`
