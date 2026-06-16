@@ -1,0 +1,23 @@
+* text eol=lf
+*.neon linguist-language=YAML
+*.png binary
+
+/.github        export-ignore
+/.infra         export-ignore
+/.phive         export-ignore
+/tools          export-ignore
+/tests          export-ignore
+/var            export-ignore
+/vendor             export-ignore
+/.editorconfig      export-ignore
+/.gitattributes     export-ignore
+/.gitignore                 export-ignore
+/compose.yaml               export-ignore
+/composer.3.4.lock          export-ignore
+/composer.4.4.lock          export-ignore
+/composer.5.0.lock          export-ignore
+/composer.6.0.lock          export-ignore
+/composer.7.0.lock          export-ignore
+/composer.lock              export-ignore
+/pccb.phar                  export-ignore
+/phpunit.xml.dist           export-ignore
