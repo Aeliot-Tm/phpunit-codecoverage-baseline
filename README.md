@@ -1,15 +1,16 @@
 PHPUnit code coverage baseline
 ==============================
 
-[![WFS](https://github.com/Aeliot-Tm/phpunit-codecoverage-baseline/actions/workflows/automated_testing.yml/badge.svg?branch=main)](https://github.com/Aeliot-Tm/phpunit-codecoverage-baseline/actions)
-[![Code Climate maintainability](https://img.shields.io/codeclimate/maintainability/Aeliot-Tm/phpunit-codecoverage-baseline?label=Maintainability&labelColor=black)](https://codeclimate.com/github/Aeliot-Tm/phpunit-codecoverage-baseline)
+[![Testing](https://github.com/Aeliot-Tm/phpunit-codecoverage-baseline/actions/workflows/automated_testing.yml/badge.svg?branch=main)](https://github.com/Aeliot-Tm/phpunit-codecoverage-baseline/actions)
+[![Security Audit](https://github.com/Aeliot-Tm/todo-registrar/actions/workflows/security-audit.yaml/badge.svg?branch=main)](https://github.com/Aeliot-Tm/todo-registrar/actions/workflows/security-audit.yaml?query=branch%3Amain)
+[![GitHub License](https://img.shields.io/github/license/Aeliot-Tm/todo-registrar?label=License&labelColor=3c3d41)](LICENSE)
 
 Package implements support of baseline for Clover repost of PHPUnit.
 
 Installation
 ------------
 
-1. Call command line script to install as dev-dependency via Composer: 
+1. Call command line script to install as dev-dependency via Composer:
    ```shell
    composer require --dev aeliot-tm/phpunit-codecoverage-baseline
    ```
@@ -27,6 +28,6 @@ Usage
 2. [Build baseline](docs/clover_build_baseline.md) for clover report and commit into your project.
 
 **Regular using:**
-1. [Run comparing](docs/clover_compare_with_baseline.md) of current Clover report with the baseline. 
+1. [Run comparing](docs/clover_compare_with_baseline.md) of current Clover report with the baseline.
    It is recommended to configure it on your GitHub or GitLab CI.
 2. Update your baseline time-to-time when you have progress with your code coverage.
