@@ -31,7 +31,7 @@ jobs:
           php-version: "${{ matrix.php-version }}"
           tools: composer
 
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
 
       - name: Set versions
         run: cp composer.${{ matrix.lock-version }}.lock composer.lock
@@ -91,13 +91,12 @@ jobs:
           php-version: "${{ matrix.php-version }}"
           tools: composer
 
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
 
       - name: Set versions
         run: cp composer.${{ matrix.lock-version }}.lock composer.lock
 
-      - name: Install dependencies
-        uses: ramsey/composer-install@v3
+      - uses: ./.github/actions/setup-composer
 
       - name: Run test suite
         run: composer run-script phpunit
@@ -123,13 +122,10 @@ jobs:
           php-version: 8.2
           tools: composer
 
-      - uses: actions/checkout@v4
-
+      - uses: actions/checkout@v6
       - name: Set versions
         run: cp composer.6.0.lock composer.lock
-
-      - name: Install dependencies
-        uses: ramsey/composer-install@v3
+      - uses: ./.github/actions/setup-composer
 
       - name: PHPStan analyse
         run: composer run-script phpstan-analise
