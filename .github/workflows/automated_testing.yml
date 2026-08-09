@@ -31,7 +31,7 @@ jobs:
           php-version: "${{ matrix.php-version }}"
           tools: composer
 
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
 
       - name: Set versions
         run: cp composer.${{ matrix.lock-version }}.lock composer.lock
@@ -91,7 +91,7 @@ jobs:
           php-version: "${{ matrix.php-version }}"
           tools: composer
 
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
 
       - name: Set versions
         run: cp composer.${{ matrix.lock-version }}.lock composer.lock
@@ -123,7 +123,7 @@ jobs:
           php-version: 8.2
           tools: composer
 
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
 
       - name: Set versions
         run: cp composer.6.0.lock composer.lock
