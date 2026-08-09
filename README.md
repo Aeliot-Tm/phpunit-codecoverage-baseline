@@ -2,8 +2,8 @@ PHPUnit code coverage baseline
 ==============================
 
 [![Testing](https://github.com/Aeliot-Tm/phpunit-codecoverage-baseline/actions/workflows/automated_testing.yml/badge.svg?branch=main)](https://github.com/Aeliot-Tm/phpunit-codecoverage-baseline/actions)
-[![Security Audit](https://github.com/Aeliot-Tm/todo-registrar/actions/workflows/security-audit.yaml/badge.svg?branch=main)](https://github.com/Aeliot-Tm/todo-registrar/actions/workflows/security-audit.yaml?query=branch%3Amain)
-[![GitHub License](https://img.shields.io/github/license/Aeliot-Tm/todo-registrar?label=License&labelColor=3c3d41)](LICENSE)
+[![Security Audit](https://github.com/Aeliot-Tm/phpunit-codecoverage-baseline/actions/workflows/security-audit.yaml/badge.svg?branch=main)](https://github.com/Aeliot-Tm/phpunit-codecoverage-baseline/actions/workflows/security-audit.yaml?query=branch%3Amain)
+[![GitHub License](https://img.shields.io/github/license/Aeliot-Tm/phpunit-codecoverage-baseline?label=License&labelColor=3c3d41)](LICENSE)
 
 Package implements support of baseline for Clover repost of PHPUnit.
 
